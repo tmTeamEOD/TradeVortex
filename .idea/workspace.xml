@@ -4,49 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiassist/chatbot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiassist/chatbotmain.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiassist/data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiassist/knowledge.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiassist/knowledge/data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/AssetChart.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/ChartManager.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/CoinStatus.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/CoinStatus.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/DigitalClock.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MainPage/ModalHandlers.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/TickerBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/hooks/useResizeObserver.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/contexts/DataCacheContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Charts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/DetailChart.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/DetailChart.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/slices/themeSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphs/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphs/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphs/consumers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphs/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphs/routing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphs/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphs/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/react-deployment-dev.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/react-service-dev.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/knowledge/data.txt" afterDir="false" />
-    </list>
+    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="무지성시발점" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,6 +27,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "OPEN"
+    }
+  ],
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tmTeamEOD/TradeVortex",
+    "accountId": "22d61acf-5497-4700-892c-ac4693451647"
+  }
+}]]></component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/frontend/package.json" />
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -84,36 +58,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript 디버그.index.html (1).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript 디버그.index.html (2).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript 디버그.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.Home.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/grace/바탕화면/Builds/TradeVortex&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/grace/다운로드/pycharm-professional-2024.3.1.1/pycharm-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript 디버그.index.html (1).executor": "Run",
+    "JavaScript 디버그.index.html (2).executor": "Run",
+    "JavaScript 디버그.index.html.executor": "Run",
+    "Node.js.Home.jsx.executor": "Run",
+    "Node.js.index.js.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/anger/TradeVortex /TradeVortex",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "ts.external.directory.path": "/home/grace/다운로드/pycharm-professional-2024.3.1.1/pycharm-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/assets" />
@@ -197,8 +171,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220" />
-        <option value="bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.180" />
+        <option value="bundled-python-sdk-85c76a3b01b3-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.180" />
       </set>
     </attachedChunks>
   </component>
@@ -236,11 +210,26 @@
       <workItem from="1736420287716" duration="559000" />
       <workItem from="1736467571658" duration="154000" />
       <workItem from="1736467820047" duration="23925000" />
+      <workItem from="1736940024580" duration="3277000" />
     </task>
+    <task id="LOCAL-00001" summary="무지성시발점">
+      <option name="closed" value="true" />
+      <created>1736940162447</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736940162447</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="무지성 시" />
+    <MESSAGE value="무지성시발점" />
+    <option name="LAST_COMMIT_MESSAGE" value="무지성시발점" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -262,12 +251,10 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/components/ChatApp.jsx</url>
           <line>151</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/App.jsx</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
