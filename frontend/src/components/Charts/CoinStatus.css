@@ -1,0 +1,28 @@
+/* CoinStatus.css */
+
+/* 키프레임 애니메이션 정의 */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 애니메이션 클래스 */
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+/* 컨테이너 스타일링 */
+.ticker-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 콘텐츠 중복으로 인한 연속성 보장 */
+.ticker-content {
+  display: flex;
+  white-space: nowrap;
+}

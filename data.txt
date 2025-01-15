@@ -1,0 +1,6 @@
+The XPS 13 laptop features:
+    - 13.4-inch 4K display
+    - Intel Core i7 processor
+    - 16GB RAM
+    - 512GB SSD storage
+    - 12-hour battery life

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-dev
+spec:
+  replicas: 1  # 개발 환경에서는 하나의 Pod로 충분
+  selector:
+    matchLabels:
+      app: react-dev
+  template:
+    metadata:
+      labels:
+        app: react-dev
+    spec:
+      containers:
+      - name: react-dev
+        image: node:23
+        command: ["yarn", "dev"]  # Vite 개발 서버 실행
+        ports:
+        - containerPort: 3000  # Vite는 기본적으로 3000번 포트에서 실행
+        volumeMounts:
+        - name: code
+          mountPath: /app  # 로컬 코드를 컨테이너에 마운트
+      volumes:
+      - name: code
+        hostPath:
+          path: /path/to/your/local/code  # 로컬 개발 코드 경로
