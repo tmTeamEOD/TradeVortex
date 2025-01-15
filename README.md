@@ -28,3 +28,9 @@
 Docker compose up --build 하셈
 
 수정시 자동 재시작 리액트는 잘되는데 장고는 뒤지게 안먹네 개선방법 아시는분?
+
+# 힘들고 괴로울땐
+
+![ac4b84f8587a9bddd6335fe955777ef2_1665540768_5604](https://github.com/user-attachments/assets/6605f5f2-341d-4fd0-b994-edcacefbbd34)
+
+햄쥐
