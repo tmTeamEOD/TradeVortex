@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
 
-# .env 파일 로드 ㅇㅇㅇ
+# .env 파일 로드 ㅇㅇㅇasd
 env_path = os.path.join(os.path.dirname(__file__), '..', '.env')  # 프로젝트 루트 기준 경로
 if os.path.exists(env_path):
     load_dotenv(dotenv_path=env_path)
