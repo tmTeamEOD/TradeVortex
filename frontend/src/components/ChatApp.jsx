@@ -142,7 +142,7 @@ const ChatApp = ({ closeModal }) => {
           onChange={(e) => setUserInput(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="무엇이든 물어보세요..."
-          className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+          className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 text-black"
         />
         <button
           onClick={sendMessage}

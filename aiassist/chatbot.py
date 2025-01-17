@@ -73,7 +73,7 @@ class ChatBotCrew:
                 embedder={
                     "provider": "google",
                     "config": {
-                        "api_key": "AIzaSyDMDRJlhtcV9BXbC3g1LKoQnDtycuRpSrE",
+                        "api_key": "AIzaSyDCItVEkimIuwJk-z8slHzgG256VSsfBIA",
                         "model": "models/text-embedding-004"}}
                 # knowledge_sources=[knowledge_source],
             )

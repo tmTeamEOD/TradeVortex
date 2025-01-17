@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="무지성시발점" />
+    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="무지성시발점">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiassist/chatbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/aiassist/chatbot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ChatApp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ChatApp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.md" beforeDir="false" afterPath="$PROJECT_DIR$/report.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,20 +34,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPEN"
+      &quot;state&quot;: &quot;OPEN&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPEN"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/tmTeamEOD/TradeVortex",
-    "accountId": "22d61acf-5497-4700-892c-ac4693451647"
+    "url": "https://github.com/tmTeamEOD/TradeVortex.git",
+    "accountId": "ddd4165f-e95c-4e19-a7ee-add5dfb0655a"
   }
 }]]></component>
   <component name="PackageJsonUpdateNotifier">
@@ -69,7 +76,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "wip",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/anger/TradeVortex /TradeVortex",
     "list.type.of.created.stylesheet": "CSS",
@@ -211,6 +218,8 @@
       <workItem from="1736467571658" duration="154000" />
       <workItem from="1736467820047" duration="23925000" />
       <workItem from="1736940024580" duration="3277000" />
+      <workItem from="1737107969423" duration="43000" />
+      <workItem from="1737108294687" duration="2396000" />
     </task>
     <task id="LOCAL-00001" summary="무지성시발점">
       <option name="closed" value="true" />
