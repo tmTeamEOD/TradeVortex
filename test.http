@@ -1,1 +1,0 @@
-POST 127.0.0.1:8000/api/auth/registration/ HTTP/1.1

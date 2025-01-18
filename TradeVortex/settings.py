@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security settings
 SECRET_KEY = 'django-insecure-wwek)^fva&kh&b=yc)80b+s)3a$4m&jovjv!&-(+y$14-san6p'
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','0.0.0.0']
 
 STATIC_ROOT = "/app/staticfiles"  # 컨테이너 내의 경로로 설정
 JWT_SECRET_KEY = 'your_random_secret_key_here'
@@ -18,13 +18,6 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # 예: Gmail SMTP
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'teameod417@gmail.com'
-EMAIL_HOST_PASSWORD = '!superior417'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 NAVER_CLIENT_ID = "6FCM6gjsZc50se9DNYRp"
 NAVER_CLIENT_SECRET = "FHA5n3PJ4X"
@@ -142,26 +135,25 @@ CORS_ALLOW_METHODS = [
 ]
 
 # Database settings
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {
-            'timeout': 20,  # 20초 동안 잠금을 기다림
-        }
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'tradevortex',  # Database name
-#         'USER': 'admin',  # Database user
-#         'PASSWORD': '1234',  # Database password
-#         'HOST': 'localhost',  # Database host
-#         'PORT': '5432',  # Database port
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'OPTIONS': {
+#             'timeout': 20,  # 20초 동안 잠금을 기다림
+#         }
 #     }
 # }
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tradevortex',  # Database name
+        'USER': 'postgres',  # PostgreSQL user (psql 서비스에서 설정한 POSTGRES_USER와 동일해야 함)
+        'PASSWORD': 'postgres',  # PostgreSQL password (psql 서비스에서 설정한 POSTGRES_PASSWORD와 동일해야 함)
+        'HOST': 'psql',  # PostgreSQL 컨테이너 이름
+        'PORT': '5432',  # PostgreSQL 기본 포트
+    }
+}
 # JWT authentication settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -184,7 +176,17 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),  # Authorization 헤더 타입
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "teameod417@gmail.com"  # Gmail 주소
+EMAIL_HOST_PASSWORD = "fvxn ilqo fpvf wehu"  # Gmail 앱 비밀번호
+DEFAULT_FROM_EMAIL = "teameod417@gmail.com"
+
+
+
+
 # Custom user model and auth settings
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True

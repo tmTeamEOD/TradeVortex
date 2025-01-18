@@ -1,6 +1,12 @@
 # Python 3.12 베이스 이미지 사용
-FROM python:3.12-slim
-
+FROM python:3.12
+# 필수 패키지 및 Rust 설치
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    && curl https://sh.rustup.rs -sSf | sh -s -- -y \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+ENV PATH="/root/.cargo/bin:${PATH}"
 # 작업 디렉토리 설정
 WORKDIR /app
 

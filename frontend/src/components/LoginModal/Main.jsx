@@ -244,10 +244,15 @@ const Main = ({ isOpen, onClose }) => {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               회원이 아니신가요?{" "}
-              <Link to="/signup" className="text-blue-600 hover:underline font-semibold">
+              <Link
+                  to="/signup"
+                  className="text-blue-600 hover:underline font-semibold"
+                  onClick={closeWithAnimation}
+              >
                 회원 가입
               </Link>
             </p>
+
           </div>
         </div>
       </div>

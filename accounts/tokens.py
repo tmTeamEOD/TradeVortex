@@ -6,9 +6,9 @@ class EmailActivationTokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
         # user의 pk, timestamp, is_active 상태 등을 조합해 해시를 만듦
         return (
-            six.text_type(user.pk) +
-            six.text_type(timestamp) +
-            six.text_type(user.is_active)
+            str(user.pk) +
+            str(timestamp) +
+            str(user.is_active)
         )
 
 email_activation_token = EmailActivationTokenGenerator()

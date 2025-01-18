@@ -7,7 +7,8 @@ import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 import ChatApp from "./components/ChatApp"; // ChatApp 모달 추가
 import Charts from "./pages/Charts";
-import DetailChart from "./pages/DetailChart.jsx"; // Charts 페이지 임포트
+import DetailChart from "./pages/DetailChart.jsx";
+import EmailActivate from "./pages/EmailActivate.jsx"; // Charts 페이지 임포트
 
 // Lazy-loaded Components
 const Home = lazy(() => import("./pages/Home"));
@@ -45,9 +46,9 @@ const AppContent = () => {
             }}
         >
             {/* 홈을 제외한 모든 페이지에 네비게이션 표시 */}
-            {!isHomePage && <Navigation key="navigation" />}
+            {!isHomePage && <Navigation key="navigation"/>}
 
-            <Routes location={location} key={`${location.pathname}-${Date.now()}`}>
+            <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/main" element={<Main/>}/>
                 <Route path="/login" element={<Login/>}/>
@@ -55,7 +56,7 @@ const AppContent = () => {
                 <Route path="/boards/:boardId" element={<BoardPosts/>}/>
                 <Route path="/charts" element={<Charts/>}/> {/* Charts 페이지 경로 추가 */}
                 <Route path="/charts/:symbol" element={<DetailChart/>}/>
-
+                <Route path="/activate" element={<EmailActivate />} />
                 <Route path="/posts/:postId" element={<PostDetail/>}/>
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
@@ -66,14 +67,13 @@ const AppContent = () => {
             {/* 홈 페이지를 제외한 모든 페이지에서 ChatApp 모달 표시 */}
             {!isHomePage && (
                 <>
-                    {chatOpen && (
-                        <div
-                            key="chat-app"
-                            className={`fixed bottom-20 right-5 z-50 p-4 rounded-md shadow-md w-full max-w-md h-[500px] text-gray-50`}
-                        >
-                            <ChatApp closeModal={toggleChat}/>
-                        </div>
-                    )}
+                    <div
+                        className={`fixed bottom-20 right-5 z-50 p-4 rounded-md shadow-md w-full max-w-md h-[700px] text-gray-50 ${
+                            chatOpen ? "block" : "hidden"
+                        }`}
+                    >
+                        <ChatApp closeModal={toggleChat}/>
+                    </div>
                     <button
                         onClick={toggleChat}
                         className="fixed bottom-5 right-5 bg-indigo-600 text-white p-3 rounded-full shadow-md hover:bg-indigo-700"
@@ -82,6 +82,7 @@ const AppContent = () => {
                     </button>
                 </>
             )}
+
         </AnimatePresence>
     );
 };

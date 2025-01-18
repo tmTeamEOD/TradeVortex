@@ -4,17 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="DB 로컬">
+    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="장고 재시작 적용">
+      <change afterPath="$PROJECT_DIR$/accounts/yrdy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/EmailActivate.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TraVo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TraVo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TradeVortex/README" beforeDir="false" afterPath="$PROJECT_DIR$/TradeVortex/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TradeVortex/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TradeVortex/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/게시판임" beforeDir="false" afterPath="$PROJECT_DIR$/board/게시판임" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/base/1/pg_internal.init" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/base/16384/pg_internal.init" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/base/5/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/base/5/pg_internal.init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ChatApp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ChatApp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginModal/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginModal/Main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge/data.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nohup.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres_data/data/base/5/pg_internal.init" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/postgres_data/data/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/global/pg_control" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postgres_data/data/global/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/global/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/pg_stat/pgstat.stat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/postgres_data/data/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/pg_wal/000000010000000000000001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.md" beforeDir="false" afterPath="$PROJECT_DIR$/report.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.http" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,13 +331,46 @@
       <option name="project" value="LOCAL" />
       <updated>1737226720298</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="장고 재시작 적용">
+      <option name="closed" value="true" />
+      <created>1737226960442</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737226960442</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="TM" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="wip" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/wip" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -336,7 +389,8 @@
     <MESSAGE value="이메일 인증 구현중2" />
     <MESSAGE value="DB및DB툴 도커에 탑재&#10;일반 가입시 이메일 인증 구현" />
     <MESSAGE value="DB 로컬" />
-    <option name="LAST_COMMIT_MESSAGE" value="DB 로컬" />
+    <MESSAGE value="장고 재시작 적용" />
+    <option name="LAST_COMMIT_MESSAGE" value="장고 재시작 적용" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -357,7 +411,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/components/ChatApp.jsx</url>
-          <line>151</line>
+          <line>166</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -366,7 +420,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/TradeVortex/settings.py</url>
-          <line>280</line>
+          <line>282</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

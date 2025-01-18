@@ -1,4 +1,5 @@
 # accounts/views.py
+from django.contrib.auth.tokens import default_token_generator
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -46,15 +47,11 @@ class CustomRegisterView(RegisterView):
         token = email_activation_token.make_token(user)
 
         # 2) 링크 구성 (uidb64 + token)
-        #    allauth/dj-rest-auth의 기본 confirm 링크를 안 쓰고,
-        #    우리가 직접 activate 뷰를 만든다고 가정
         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
 
-        # 예: /accounts/activate/?uid=...&token=...
-        # 도메인은 django.contrib.sites.get_current_site를 활용
-        current_site = get_current_site(self.request)
-        domain = current_site.domain  # 개발 환경이면 "localhost:8000" 등
-        activate_url = f"http://{domain}/accounts/activate/?uid={uidb64}&token={token}"
+        # 프론트엔드 URL로 링크 생성
+        frontend_url = settings.FRONTEND_URL
+        activate_url = f"http://localhost:3000/activate?uid={uidb64}&token={token}"
 
         # 3) 이메일 전송
         subject = "이메일 인증 안내"
@@ -72,37 +69,31 @@ class CustomRegisterView(RegisterView):
         # user 객체 리턴
         return user
 
-
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from .tokens import email_activation_token
 
 
-class ActivateEmailView(APIView):
-    permission_classes = [AllowAny]
+class ActivateAccountView(APIView):
+    def post(self, request, *args, **kwargs):
+        uid = request.data.get("uid")
+        token = request.data.get("token")
 
-    def get(self, request, *args, **kwargs):
-        uidb64 = request.GET.get('uid')
-        token = request.GET.get('token')
-        if not uidb64 or not token:
-            return Response({"error": "Invalid request"}, status=status.HTTP_400_BAD_REQUEST)
+        if not uid or not token:
+            return Response({"error": "잘못된 요청입니다."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # uidb64를 원래 user pk로 디코딩
-            uid = force_str(urlsafe_base64_decode(uidb64))
+            uid = urlsafe_base64_decode(uid).decode()
             user = User.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-            user = None
+        except (User.DoesNotExist, ValueError, TypeError, OverflowError):
+            return Response({"error": "사용자를 찾을 수 없습니다."}, status=status.HTTP_400_BAD_REQUEST)
 
-        if user is not None and email_activation_token.check_token(user, token):
-            # 토큰이 유효하면 활성화 처리
+        if email_activation_token.check_token(user, token):
             user.is_active = True
             user.save()
-            return Response({"message": "이메일 인증이 완료되었습니다."}, status=status.HTTP_200_OK)
+            return Response({"message": "계정이 성공적으로 활성화되었습니다."}, status=status.HTTP_200_OK)
         else:
-            return Response({"error": "유효하지 않은 토큰이거나 이미 인증이 완료되었습니다."},
-                            status=status.HTTP_400_BAD_REQUEST)
-
+            return Response({"error": "링크가 유효하지 않거나 만료되었습니다."}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LoginView(APIView):

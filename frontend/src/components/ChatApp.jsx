@@ -1,14 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, memo } from "react";
 import { useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const ChatApp = ({ closeModal }) => {
+const ChatApp = memo(({ closeModal }) => {
   const isDarkMode = useSelector((state) => state.theme.isDarkMode); // Redux에서 다크모드 상태 가져오기
   const [messages, setMessages] = useState([
-    { sender: "챗봇", text: "안녕하세요! 무엇이든 물어보세요 😊", time: new Date().toLocaleTimeString() },
+    {
+      id: Date.now(),
+      sender: "챗봇",
+      text: "안녕하세요! 무엇이든 물어보세요 😊",
+      time: new Date().toLocaleTimeString(),
+    },
   ]);
   const [userInput, setUserInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,17 +21,20 @@ const ChatApp = ({ closeModal }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark"); // 다크모드 클래스 추가
-    } else {
-      document.documentElement.classList.remove("dark"); // 다크모드 클래스 제거
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [isDarkMode]);
+  }, [messages]);
 
   const sendMessage = async () => {
     if (!userInput.trim()) return;
 
-    const newMessage = { sender: "You", text: userInput, time: new Date().toLocaleTimeString() };
+    const newMessage = {
+      id: Date.now(),
+      sender: "You",
+      text: userInput,
+      time: new Date().toLocaleTimeString(),
+    };
     setMessages((prev) => [...prev, newMessage]);
     setUserInput("");
     setLoading(true);
@@ -42,12 +50,22 @@ const ChatApp = ({ closeModal }) => {
 
       setMessages((prev) => [
         ...prev,
-        ...botReplies.map((text) => ({ sender: "챗봇", text, time: new Date().toLocaleTimeString() })),
+        ...botReplies.map((text) => ({
+          id: Date.now() + Math.random(),
+          sender: "챗봇",
+          text,
+          time: new Date().toLocaleTimeString(),
+        })),
       ]);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { sender: "Error", text: "오류가 발생했습니다. 다시 시도해주세요.", time: new Date().toLocaleTimeString() },
+        {
+          id: Date.now(),
+          sender: "Error",
+          text: "오류가 발생했습니다. 다시 시도해주세요.",
+          time: new Date().toLocaleTimeString(),
+        },
       ]);
     } finally {
       setLoading(false);
@@ -61,15 +79,16 @@ const ChatApp = ({ closeModal }) => {
     }
   };
 
-  useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages]);
+  const handleInputResize = (e) => {
+    e.target.style.height = "auto";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  };
 
   return (
     <motion.div
-      className="fixed bottom-4 right-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg w-full max-w-md h-[700px] flex flex-col z-50"
+      className={`fixed bottom-4 right-4 ${
+        isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+      } p-6 rounded-2xl shadow-lg w-full max-w-md h-[700px] flex flex-col z-50`}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
@@ -88,9 +107,9 @@ const ChatApp = ({ closeModal }) => {
 
       {/* 메시지 영역 */}
       <div className="flex-1 overflow-y-auto space-y-4">
-        {messages.map((msg, index) => (
+        {messages.map((msg) => (
           <div
-            key={index}
+            key={msg.id}
             className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
           >
             <div
@@ -108,20 +127,13 @@ const ChatApp = ({ closeModal }) => {
           </div>
         ))}
         {loading && (
-          <motion.div
-            className="flex items-center space-x-2 pl-2" // 왼쪽 여백 추가
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="flex items-center space-x-2">
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
-                className="w-2 h-2 bg-gray-500 rounded-full ml-1" // 점들 간 여백 추가
+                className="w-2 h-2 bg-gray-500 rounded-full"
                 animate={{
                   y: [0, -10, 0],
-                  scale: [1, 1.5, 1],
                 }}
                 transition={{
                   duration: 0.6,
@@ -130,7 +142,7 @@ const ChatApp = ({ closeModal }) => {
                 }}
               />
             ))}
-          </motion.div>
+          </div>
         )}
         <div ref={messagesEndRef} />
       </div>
@@ -140,9 +152,12 @@ const ChatApp = ({ closeModal }) => {
         <textarea
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
+          onInput={handleInputResize}
           onKeyPress={handleKeyPress}
           placeholder="무엇이든 물어보세요..."
-          className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 text-black"
+          className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700"
+          rows={1}
+          style={{ overflow: "hidden" }}
         />
         <button
           onClick={sendMessage}
@@ -156,6 +171,6 @@ const ChatApp = ({ closeModal }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 export default ChatApp;
