@@ -4,7 +4,7 @@ from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
-        ('추가 정보test', {
+        ('추가 정보', {
             'fields': (
                 'profile_picture', 'bio', 'joined_at', 'last_activity',
                 'phone_number', 'is_verified', 'followers', 'points', 'level',

@@ -7,12 +7,8 @@
     <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="뭘 많이 했음">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postgres_data/data/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/global/pg_internal.init" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/pg_stat/pgstat.stat" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/pg_stat/pgstat.stat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/날읽어볼래" beforeDir="false" afterPath="$PROJECT_DIR$/날읽어볼래" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres_data/data/pg_stat/pgstat.stat" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737228414753</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="뭘 많이 했음">
+      <option name="closed" value="true" />
+      <created>1737228525510</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737228525510</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
