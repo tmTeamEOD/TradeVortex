@@ -1,5 +1,5 @@
 # 지존 TeamEOD 우리는 TradeVortex 
-## 침몰하면 무너지고 일어서면 일어서는 지존 피사의 블랙펄 Team EOD
+## 침몰하면 무너지고 떠오르면 일어서는 지존 피사의 블랙펄 Team EOD
 
 ![image](https://github.com/user-attachments/assets/72171531-dc6b-4406-a7df-a0eb8e5a1c8d)
 
