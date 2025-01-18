@@ -19,9 +19,91 @@ from dj_rest_auth.registration.views import RegisterView
 
 User = get_user_model()
 
+
+
+from django.core.mail import send_mail
+from django.urls import reverse
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+
+from dj_rest_auth.registration.views import RegisterView
+from .tokens import email_activation_token
+
 @method_decorator(csrf_exempt, name='dispatch')  # 개발 환경에서만 사용
 class CustomRegisterView(RegisterView):
-    serializer_class = CustomRegisterSerializer  # 강제로 CustomRegisterSerializer 사용
+    """
+    dj-rest-auth의 RegisterView를 상속하지만,
+    이메일 인증 로직을 직접 삽입하기 위해 perform_create 오버라이드.
+    """
+
+    def perform_create(self, serializer):
+        user = serializer.save(self.request)  # User 생성
+        user.is_active = False  # 활성화 전까지 로그인 불가
+        user.save()
+
+        # 1) 토큰 생성
+        token = email_activation_token.make_token(user)
+
+        # 2) 링크 구성 (uidb64 + token)
+        #    allauth/dj-rest-auth의 기본 confirm 링크를 안 쓰고,
+        #    우리가 직접 activate 뷰를 만든다고 가정
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+
+        # 예: /accounts/activate/?uid=...&token=...
+        # 도메인은 django.contrib.sites.get_current_site를 활용
+        current_site = get_current_site(self.request)
+        domain = current_site.domain  # 개발 환경이면 "localhost:8000" 등
+        activate_url = f"http://{domain}/accounts/activate/?uid={uidb64}&token={token}"
+
+        # 3) 이메일 전송
+        subject = "이메일 인증 안내"
+        message = f"아래 링크를 클릭하여 회원가입을 완료해주세요:\n{activate_url}"
+
+        # settings.py에서 DEFAULT_FROM_EMAIL, EMAIL_BACKEND 설정 필요
+        send_mail(
+            subject,
+            message,
+            from_email=None,  # None이면 DEFAULT_FROM_EMAIL 사용
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
+
+        # user 객체 리턴
+        return user
+
+
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str
+from .tokens import email_activation_token
+
+
+class ActivateEmailView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        uidb64 = request.GET.get('uid')
+        token = request.GET.get('token')
+        if not uidb64 or not token:
+            return Response({"error": "Invalid request"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # uidb64를 원래 user pk로 디코딩
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+
+        if user is not None and email_activation_token.check_token(user, token):
+            # 토큰이 유효하면 활성화 처리
+            user.is_active = True
+            user.save()
+            return Response({"message": "이메일 인증이 완료되었습니다."}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "유효하지 않은 토큰이거나 이미 인증이 완료되었습니다."},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class LoginView(APIView):
     permission_classes = [AllowAny]

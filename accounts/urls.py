@@ -1,10 +1,13 @@
 from django.urls import path, include
-from .views import GoogleLoginView, UserProfileView, NaverLoginView, CustomRegisterView, KakaoLoginView
+from .views import GoogleLoginView, UserProfileView, NaverLoginView, CustomRegisterView, KakaoLoginView, \
+    ActivateEmailView
 from .views import CheckEmailAvailability, CheckUsernameAvailability
 # from .views import set_csrf_token
 from .views import LoginView
 urlpatterns = [
     path('signup/', CustomRegisterView.as_view(), name='rest_register'),  # 회원가입
+    path('activate/', ActivateEmailView.as_view(), name='activate_email'),
+
     path('login/', LoginView.as_view(), name='account_login'),
     path('google/', GoogleLoginView.as_view(), name='google_login'),    # path('social/google/', google_login, name='google_login'),  # Google 로그인 API URL 매핑
     path("naver/", NaverLoginView.as_view(), name="naver_login"),

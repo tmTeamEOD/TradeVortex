@@ -18,6 +18,13 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # 예: Gmail SMTP
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'teameod417@gmail.com'
+EMAIL_HOST_PASSWORD = '!superior417'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 NAVER_CLIENT_ID = "6FCM6gjsZc50se9DNYRp"
 NAVER_CLIENT_SECRET = "FHA5n3PJ4X"
@@ -183,7 +190,7 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'

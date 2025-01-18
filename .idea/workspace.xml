@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="무지성시발점">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="인생무상">
+      <change afterPath="$PROJECT_DIR$/accounts/tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TraVo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TraVo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiassist/chatbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/aiassist/chatbot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ChatApp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ChatApp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report.md" beforeDir="false" afterPath="$PROJECT_DIR$/report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TradeVortex/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TradeVortex/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,15 +26,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
         <option value="Dockerfile" />
         <option value="JSX File" />
         <option value="CSS File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="wip" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -46,7 +60,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/tmTeamEOD/TradeVortex.git",
+    "url": "https://github.com/tmTeamEOD/TradeVortex",
     "accountId": "ddd4165f-e95c-4e19-a7ee-add5dfb0655a"
   }
 }]]></component>
@@ -65,36 +79,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript 디버그.index.html (1).executor": "Run",
-    "JavaScript 디버그.index.html (2).executor": "Run",
-    "JavaScript 디버그.index.html.executor": "Run",
-    "Node.js.Home.jsx.executor": "Run",
-    "Node.js.index.js.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
-    "git-widget-placeholder": "wip",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/home/anger/TradeVortex /TradeVortex",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "ts.external.directory.path": "/home/grace/다운로드/pycharm-professional-2024.3.1.1/pycharm-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript 디버그.index.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 디버그.index.html (2).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 디버그.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.Home.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;wip&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/anger/TradeVortex /TradeVortex&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/grace/다운로드/pycharm-professional-2024.3.1.1/pycharm-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/assets" />
@@ -219,7 +233,8 @@
       <workItem from="1736467820047" duration="23925000" />
       <workItem from="1736940024580" duration="3277000" />
       <workItem from="1737107969423" duration="43000" />
-      <workItem from="1737108294687" duration="2396000" />
+      <workItem from="1737108294687" duration="2698000" />
+      <workItem from="1737242922087" duration="1767000" />
     </task>
     <task id="LOCAL-00001" summary="무지성시발점">
       <option name="closed" value="true" />
@@ -229,16 +244,68 @@
       <option name="project" value="LOCAL" />
       <updated>1736940162447</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114371196</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114371196</updated>
+    </task>
+    <task id="LOCAL-00003" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114419277</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114419277</updated>
+    </task>
+    <task id="LOCAL-00004" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114466058</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114466058</updated>
+    </task>
+    <task id="LOCAL-00005" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114501294</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114501294</updated>
+    </task>
+    <task id="LOCAL-00006" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114524366</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114524366</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="무지성 시" />
     <MESSAGE value="무지성시발점" />
-    <option name="LAST_COMMIT_MESSAGE" value="무지성시발점" />
+    <MESSAGE value="인생무상" />
+    <option name="LAST_COMMIT_MESSAGE" value="인생무상" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -268,7 +335,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/TradeVortex/settings.py</url>
-          <line>273</line>
+          <line>280</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
