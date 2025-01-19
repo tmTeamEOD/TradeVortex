@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="뭘 많이 했음">
+    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="노드모듈은 이제 그냥 로컬에서 의존합니다">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/base/16384/16448" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/base/16384/16448" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres_data/data/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/postgres_data/data/pg_wal/000000010000000000000001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +222,7 @@
       <workItem from="1737107969423" duration="43000" />
       <workItem from="1737108294687" duration="2698000" />
       <workItem from="1737242922087" duration="2270000" />
-      <workItem from="1737321460771" duration="304000" />
+      <workItem from="1737321460771" duration="1013000" />
     </task>
     <task id="LOCAL-00001" summary="무지성시발점">
       <option name="closed" value="true" />
@@ -339,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737228603424</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="노드모듈은 이제 그냥 로컬에서 의존합니다">
+      <option name="closed" value="true" />
+      <created>1737321934758</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1737321934758</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,7 +380,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/wip" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -391,7 +408,8 @@
     <MESSAGE value="DB 로컬" />
     <MESSAGE value="장고 재시작 적용" />
     <MESSAGE value="뭘 많이 했음" />
-    <option name="LAST_COMMIT_MESSAGE" value="뭘 많이 했음" />
+    <MESSAGE value="노드모듈은 이제 그냥 로컬에서 의존합니다" />
+    <option name="LAST_COMMIT_MESSAGE" value="노드모듈은 이제 그냥 로컬에서 의존합니다" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
