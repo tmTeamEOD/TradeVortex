@@ -9,7 +9,7 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app  # 로컬 코드와 컨테이너 코드 동기화
-#      - /app/node_modules  # node_modules를 컨테이너 내부에서 관리
+      - /app/node_modules  # node_modules를 컨테이너 내부에서 관리
     environment:
       - VITE_DEV_SERVER_HMR_HOST=host.docker.internal # Docker 호스트에 연결
       - VITE_DEV_SERVER_HMR_PORT=3000                # WebSocket 포트 설정
