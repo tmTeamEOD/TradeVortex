@@ -144,16 +144,29 @@ CORS_ALLOW_METHODS = [
 #         }
 #     }
 # }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'tradevortex',  # Database name
+#         'USER': 'postgres',  # PostgreSQL user (psql 서비스에서 설정한 POSTGRES_USER와 동일해야 함)
+#         'PASSWORD': 'postgres',  # PostgreSQL password (psql 서비스에서 설정한 POSTGRES_PASSWORD와 동일해야 함)
+#         'HOST': 'psql',  # PostgreSQL 컨테이너 이름
+#         'PORT': '5432',  # PostgreSQL 기본 포트
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tradevortex',  # Database name
-        'USER': 'postgres',  # PostgreSQL user (psql 서비스에서 설정한 POSTGRES_USER와 동일해야 함)
-        'PASSWORD': 'postgres',  # PostgreSQL password (psql 서비스에서 설정한 POSTGRES_PASSWORD와 동일해야 함)
-        'HOST': 'psql',  # PostgreSQL 컨테이너 이름
-        'PORT': '5432',  # PostgreSQL 기본 포트
+        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite database backend
+        'NAME': BASE_DIR / 'db.sqlite3',  # Path to the SQLite database file (relative to the base directory)
     }
 }
+
+
+
+
 # JWT authentication settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
