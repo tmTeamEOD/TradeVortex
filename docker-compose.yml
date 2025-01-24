@@ -21,11 +21,11 @@ services:
   django:
     container_name: django
     build:
-      context: TradeVortex
+      context: backend
     ports:
       - "8000:8000"
     volumes:
-      - ./TradeVortex:/app  # 로컬 코드와 컨테이너 코드 동기화
+      - ./backend:/app  # 로컬 코드와 컨테이너 코드 동기화
     environment:
       - PYTHONUNBUFFERED=1
       - DJANGO_SETTINGS_MODULE=TradeVortex.settings
