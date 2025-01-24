@@ -140,29 +140,24 @@ CORS_ALLOW_METHODS = [
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #         'OPTIONS': {
-#             'timeout': 20,  # 20초 동안 잠금을 기다림
+#             'timeot': 20,  # 20초 동안 잠금을 기다림
 #         }
-#     }
+#     }u
 # }
 
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'tradevortex',  # Database name
-#         'USER': 'postgres',  # PostgreSQL user (psql 서비스에서 설정한 POSTGRES_USER와 동일해야 함)
-#         'PASSWORD': 'postgres',  # PostgreSQL password (psql 서비스에서 설정한 POSTGRES_PASSWORD와 동일해야 함)
-#         'HOST': 'psql',  # PostgreSQL 컨테이너 이름
-#         'PORT': '5432',  # PostgreSQL 기본 포트
-#     }
-# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite database backend
-        'NAME': BASE_DIR / 'db.sqlite3',  # Path to the SQLite database file (relative to the base directory)
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tradevortex',  # Database name
+        'USER': 'postgres',  # PostgreSQL user (psql 서비스에서 설정한 POSTGRES_USER와 동일해야 함)
+        'PASSWORD': 'postgres',  # PostgreSQL password (psql 서비스에서 설정한 POSTGRES_PASSWORD와 동일해야 함)
+        'HOST': 'psql',  # PostgreSQL 컨테이너 이름
+        'PORT': '5432',  # PostgreSQL 기본 포트
     }
 }
+
+
 
 
 
