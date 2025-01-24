@@ -44,12 +44,12 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tmTeamEOD/TradeVortex.git",
-    "accountId": "233bd242-379d-4432-acc3-2e5d5c7b9ec8"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tmTeamEOD/TradeVortex.git&quot;,
+    &quot;accountId&quot;: &quot;233bd242-379d-4432-acc3-2e5d5c7b9ec8&quot;
   }
-}]]></component>
+}</component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/frontend/package.json" />
     <dismissed value="$PROJECT_DIR$/package.json" />
