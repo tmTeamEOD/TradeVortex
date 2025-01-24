@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "highcharts": "^12.1.2",
+    "highcharts-react-official": "^3.2.1",
+    "vite": "^6.0.7"
+  }
+}

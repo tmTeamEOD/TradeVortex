@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="무지성 버전 최신화">
+      <change beforePath="$PROJECT_DIR$/TradeVortex/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TradeVortex/settings.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Dockerfile" />
+        <option value="JSX File" />
+        <option value="CSS File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="wip" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tmTeamEOD/TradeVortex.git&quot;,
+    &quot;accountId&quot;: &quot;233bd242-379d-4432-acc3-2e5d5c7b9ec8&quot;
+  }
+}</component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/frontend/package.json" />
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2rCoOUwgqqRCC0PJ0NcQ5NkZ37G" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript 디버그.index.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 디버그.index.html (2).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 디버그.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.Home.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;wip&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/anger/TradeVortex /TradeVortex&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/grace/다운로드/pycharm-professional-2024.3.1.1/pycharm-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/assets" />
+      <recent name="$PROJECT_DIR$/frontend/public" />
+      <recent name="$PROJECT_DIR$/frontend/node_modules" />
+      <recent name="$PROJECT_DIR$/frontend" />
+      <recent name="$PROJECT_DIR$/frontend/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/pages" />
+      <recent name="$PROJECT_DIR$/frontend/src/pages/Home" />
+      <recent name="$PROJECT_DIR$/frontend/src/components/Charts" />
+      <recent name="$PROJECT_DIR$/frontend/src/components" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django 서버.TraVo">
+    <configuration name="Test: frontend" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="TraVo" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="frontend" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html (2)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TradeVortex/frontend/dist/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TradeVortex/frontend/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Home.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/frontend/src/pages/Home.jsx" working-dir="$PROJECT_DIR$/frontend/src/pages">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/frontend/src/prl/horizontal-scroll/index.js" working-dir="$PROJECT_DIR$/frontend/src/prl/horizontal-scroll">
+      <method v="2" />
+    </configuration>
+    <configuration name="TraVo" type="Python.DjangoServer" factoryName="Django server">
+      <module name="TraVo" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.Home.jsx" />
+        <item itemvalue="Node.js.index.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220" />
+        <option value="bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="9f6e6c03-b139-4e05-a9c6-3ff72505273d" name="변경" comment="" />
+      <created>1736072386030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736072386030</updated>
+      <workItem from="1736072387115" duration="13251000" />
+      <workItem from="1736129800987" duration="15264000" />
+      <workItem from="1736177614198" duration="17155000" />
+      <workItem from="1736220537865" duration="683000" />
+      <workItem from="1736221236057" duration="1570000" />
+      <workItem from="1736257651231" duration="14014000" />
+      <workItem from="1736271676022" duration="1631000" />
+      <workItem from="1736285567822" duration="4820000" />
+      <workItem from="1736293851283" duration="8000" />
+      <workItem from="1736293862991" duration="134000" />
+      <workItem from="1736294001180" duration="24000" />
+      <workItem from="1736294048779" duration="10337000" />
+      <workItem from="1736304585515" duration="8999000" />
+      <workItem from="1736324655559" duration="6213000" />
+      <workItem from="1736391664695" duration="4083000" />
+      <workItem from="1736429557616" duration="8205000" />
+      <workItem from="1736437795423" duration="4308000" />
+      <workItem from="1736443110427" duration="1132000" />
+      <workItem from="1736444263857" duration="1451000" />
+      <workItem from="1736445801587" duration="3807000" />
+      <workItem from="1736449634694" duration="421000" />
+      <workItem from="1736419218057" duration="740000" />
+      <workItem from="1736419980693" duration="196000" />
+      <workItem from="1736420287716" duration="559000" />
+      <workItem from="1736467571658" duration="154000" />
+      <workItem from="1736467820047" duration="23925000" />
+      <workItem from="1736940024580" duration="3277000" />
+      <workItem from="1737107969423" duration="43000" />
+      <workItem from="1737108294687" duration="2698000" />
+      <workItem from="1737242922087" duration="2270000" />
+      <workItem from="1737321460771" duration="1342000" />
+      <workItem from="1737417635859" duration="2849000" />
+      <workItem from="1737447532626" duration="1155000" />
+      <workItem from="1737510208804" duration="4000" />
+      <workItem from="1737523714705" duration="4328000" />
+      <workItem from="1737678371063" duration="30000" />
+    </task>
+    <task id="LOCAL-00001" summary="무지성시발점">
+      <option name="closed" value="true" />
+      <created>1736940162447</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736940162447</updated>
+    </task>
+    <task id="LOCAL-00002" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114371196</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114371196</updated>
+    </task>
+    <task id="LOCAL-00003" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114419277</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114419277</updated>
+    </task>
+    <task id="LOCAL-00004" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114466058</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114466058</updated>
+    </task>
+    <task id="LOCAL-00005" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114501294</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114501294</updated>
+    </task>
+    <task id="LOCAL-00006" summary="인생무상">
+      <option name="closed" value="true" />
+      <created>1737114524366</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737114524366</updated>
+    </task>
+    <task id="LOCAL-00007" summary="이메일 인증 구현중">
+      <option name="closed" value="true" />
+      <created>1737212600998</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737212600998</updated>
+    </task>
+    <task id="LOCAL-00008" summary="이메일 인증 구현중2">
+      <option name="closed" value="true" />
+      <created>1737212729287</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737212729287</updated>
+    </task>
+    <task id="LOCAL-00009" summary="DB및DB툴 도커에 탑재&#10;일반 가입시 이메일 인증 구현">
+      <option name="closed" value="true" />
+      <created>1737226351396</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737226351396</updated>
+    </task>
+    <task id="LOCAL-00010" summary="DB 로컬">
+      <option name="closed" value="true" />
+      <created>1737226720298</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737226720298</updated>
+    </task>
+    <task id="LOCAL-00011" summary="장고 재시작 적용">
+      <option name="closed" value="true" />
+      <created>1737226960442</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737226960442</updated>
+    </task>
+    <task id="LOCAL-00012" summary="뭘 많이 했음">
+      <option name="closed" value="true" />
+      <created>1737228414753</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737228414753</updated>
+    </task>
+    <task id="LOCAL-00013" summary="뭘 많이 했음">
+      <option name="closed" value="true" />
+      <created>1737228525510</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737228525510</updated>
+    </task>
+    <task id="LOCAL-00014" summary="뭘 많이 했음">
+      <option name="closed" value="true" />
+      <created>1737228603424</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1737228603424</updated>
+    </task>
+    <task id="LOCAL-00015" summary="노드모듈은 이제 그냥 로컬에서 의존합니다">
+      <option name="closed" value="true" />
+      <created>1737321934758</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1737321934758</updated>
+    </task>
+    <task id="LOCAL-00016" summary="무지성 버전 최신화">
+      <option name="closed" value="true" />
+      <created>1737322501520</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1737322501520</updated>
+    </task>
+    <task id="LOCAL-00017" summary="무지성 버전 최신화">
+      <option name="closed" value="true" />
+      <created>1737322697260</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1737322697260</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="TM" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="wip" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/wip" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="wip" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="무지성 시" />
+    <MESSAGE value="무지성시발점" />
+    <MESSAGE value="인생무상" />
+    <MESSAGE value="이메일 인증 구현중" />
+    <MESSAGE value="이메일 인증 구현중2" />
+    <MESSAGE value="DB및DB툴 도커에 탑재&#10;일반 가입시 이메일 인증 구현" />
+    <MESSAGE value="DB 로컬" />
+    <MESSAGE value="장고 재시작 적용" />
+    <MESSAGE value="뭘 많이 했음" />
+    <MESSAGE value="노드모듈은 이제 그냥 로컬에서 의존합니다" />
+    <MESSAGE value="무지성 버전 최신화" />
+    <option name="LAST_COMMIT_MESSAGE" value="무지성 버전 최신화" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/main.jsx</url>
+          <line>5</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/components/Charts/ChartManager.jsx</url>
+          <line>159</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/main.jsx</url>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/components/ChatApp.jsx</url>
+          <line>166</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/App.jsx</url>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TradeVortex/settings.py</url>
+          <line>277</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/graphs/urls.py</url>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/graphs/urls.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/graphs/views.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

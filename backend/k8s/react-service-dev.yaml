@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-service
+spec:
+  selector:
+    app: react-dev
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000  # Vite 개발 서버는 기본적으로 3000번 포트
+  type: LoadBalancer

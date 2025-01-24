@@ -1,0 +1,127 @@
+## 엔드포인트 설명
+
+### 1. **초봉 데이터 API**
+
+- **URL**: `/api/fetch/candles/seconds/<symbol>/`
+- **HTTP 메서드**: GET
+- **설명**: Upbit API에서 초 단위(예: 60초)의 캔들 데이터를 가져옵니다.
+
+#### 요청 쿼리 파라미터
+| 파라미터 | 필수 여부 | 설명                 | 예시            |
+|----------|-----------|----------------------|-----------------|
+| `count`  | 필수      | 반환받을 데이터 개수 | `10`            |
+| `unit`   | 필수      | 초 단위             | `60` (60초)     |
+| `to`     | 선택      | 특정 시점 (UTC 기준) | `2025-01-01T00:00:00` |
+
+#### 요청 예시
+```plaintext
+GET /api/fetch/candles/seconds/KRW-BTC/?count=10&unit=60&to=2025-01-01T00:00:00
+```
+
+#### 응답 예시
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "market": "KRW-BTC",
+      "candle_date_time_utc": "2024-12-31T23:59:00",
+      "candle_date_time_kst": "2025-01-01T08:59:00",
+      "opening_price": 30000000.0,
+      "high_price": 30500000.0,
+      "low_price": 29900000.0,
+      "trade_price": 30400000.0,
+      "timestamp": 1672441140000,
+      "candle_acc_trade_price": 500000000.0,
+      "candle_acc_trade_volume": 15.0,
+      "unit": 60
+    },
+    ...
+  ]
+}
+```
+
+---
+
+### 2. **나머지 캔들 데이터 API**
+
+- **URL**: `/api/fetch/candles/<candle_type>/<symbol>/`
+- **HTTP 메서드**: GET
+- **설명**: Upbit API에서 분봉, 일봉, 주봉, 월봉 데이터를 가져옵니다.
+
+#### `candle_type` 값
+| 값       | 설명         |
+|----------|--------------|
+| `minutes`| 분봉 데이터   |
+| `days`   | 일봉 데이터   |
+| `weeks`  | 주봉 데이터   |
+| `months` | 월봉 데이터   |
+
+#### 요청 쿼리 파라미터
+| 파라미터 | 필수 여부 | 설명                 | 예시            |
+|----------|-----------|----------------------|-----------------|
+| `count`  | 필수      | 반환받을 데이터 개수 | `10`            |
+| `unit`   | 선택      | 분 단위 (`minutes`만 필요) | `5` (5분)      |
+| `to`     | 선택      | 특정 시점 (UTC 기준) | `2025-01-01T00:00:00` |
+
+#### 요청 예시
+1. **분봉 데이터**:
+   ```plaintext
+   GET /api/fetch/candles/minutes/KRW-BTC/?count=10&unit=5&to=2025-01-01T00:00:00
+   ```
+
+2. **일봉 데이터**:
+   ```plaintext
+   GET /api/fetch/candles/days/KRW-BTC/?count=10&to=2025-01-01T00:00:00
+   ```
+
+3. **주봉 데이터**:
+   ```plaintext
+   GET /api/fetch/candles/weeks/KRW-BTC/?count=10&to=2025-01-01T00:00:00
+   ```
+
+4. **월봉 데이터**:
+   ```plaintext
+   GET /api/fetch/candles/months/KRW-BTC/?count=10&to=2025-01-01T00:00:00
+   ```
+
+#### 응답 예시
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "market": "KRW-BTC",
+      "candle_date_time_utc": "2024-12-31T00:00:00",
+      "candle_date_time_kst": "2025-01-01T09:00:00",
+      "opening_price": 30000000.0,
+      "high_price": 31000000.0,
+      "low_price": 29500000.0,
+      "trade_price": 30700000.0,
+      "timestamp": 1672401600000,
+      "candle_acc_trade_price": 1000000000.0,
+      "candle_acc_trade_volume": 30.0
+    },
+    ...
+  ]
+}
+```
+
+---
+
+## 에러 응답
+- 요청이 잘못되었거나 필수 파라미터가 누락된 경우:
+```json
+{
+  "error": "count와 unit은 필수입니다."
+}
+```
+
+- Upbit API 요청 실패:
+```json
+{
+  "error": "Upbit API 요청 실패: <상세 에러 메시지>"
+}
+```
+
+---

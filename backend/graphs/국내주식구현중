@@ -1,0 +1,32 @@
+# 어쁘로발
+
+curl -X POST "https://openapi.koreainvestment.com:9443/oauth2/Approval" ^
+-H "Content-Type: application/json;charset=utf-8" ^
+-d "{\"grant_type\":\"client_credentials\",\"appkey\":\"PS1s7lqreJt36Rfd5IruoVAvoa3YwXpOtRg1\",\"secretkey\":\"xdBPpLcLlYOyBEDATejRFKYnXBm/iuwHmLUrgccjQzAP66LFp6Yhh3ZKmibX0HFBoFkW8tE3/G1d5T7EZFVxv1u+y6fcPcePC2RI2FSCF1ChZb6stu/PeOxb5Ti048xu0Do0GoGKPTWubieenXSv67pI/tnv38GQ3wzdwu5e2j3Algk6TkE=\"}"
+
+#액사스 토큰
+
+curl -X POST "https://openapi.koreainvestment.com:9443/oauth2/tokenP" ^
+-H "Content-Type: application/json;charset=UTF-8" ^
+-d "{\"grant_type\":\"client_credentials\",\"appkey\":\"PS1s7lqreJt36Rfd5IruoVAvoa3YwXpOtRg1\",\"appsecret\":\"xdBPpLcLlYOyBEDATejRFKYnXBm/iuwHmLUrgccjQzAP66LFp6Yhh3ZKmibX0HFBoFkW8tE3/G1d5T7EZFVxv1u+y6fcPcePC2RI2FSCF1ChZb6stu/PeOxb5Ti048xu0Do0GoGKPTWubieenXSv67pI/tnv38GQ3wzdwu5e2j3Algk6TkE=\"}"
+
+
+#종목 조회
+
+curl -v -X GET "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/search-stock-info?PRDT_TYPE_CD=300&PDNO=005930" ^
+-H "Content-Type: application/json; charset=utf-8" ^
+-H "authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b2tlbiIsImF1ZCI6IjA1MDM1NzhkLTNjNzMtNDg3NS1iOTliLWJmZjhhMGE1YzkwMSIsInByZHRfY2QiOiIiLCJpc3MiOiJ1bm9ndyIsImV4cCI6MTczNzYxNTU3NCwiaWF0IjoxNzM3NTI5MTc0LCJqdGkiOiJQUzFzN2xxcmVKdDM2UmZkNUlydW9WQXZvYTNZd1hwT3RSZzEifQ.QxWDv-DqXYnpPLRZxzb_tqqlqkwQUM8kWw0dPtQ7toD-SlNUbcGgCxe57wZLrtJS8amIQUyxbf45I7K-zeJDmQ" ^
+-H "appkey: PS1s7lqreJt36Rfd5IruoVAvoa3YwXpOtRg1" ^
+-H "appsecret: xdBPpLcLlYOyBEDATejRFKYnXBm/iuwHmLUrgccjQzAP66LFp6Yhh3ZKmibX0HFBoFkW8tE3/G1d5T7EZFVxv1u+y6fcPcePC2RI2FSCF1ChZb6stu/PeOxb5Ti048xu0Do0GoGKPTWubieenXSv67pI/tnv38GQ3wzdwu5e2j3Algk6TkE=" ^
+-H "tr_id: CTPF1002R" ^
+-H "custtype: P"
+
+일봉
+
+curl -X GET "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-price?FID_COND_MRKT_DIV_CODE=J&FID_INPUT_ISCD=005930&FID_PERIOD_DIV_CODE=D&FID_ORG_ADJ_PRC=0" ^
+-H "Content-Type: application/json; charset=utf-8" ^
+-H "authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b2tlbiIsImF1ZCI6IjA1MDM1NzhkLTNjNzMtNDg3NS1iOTliLWJmZjhhMGE1YzkwMSIsInByZHRfY2QiOiIiLCJpc3MiOiJ1bm9ndyIsImV4cCI6MTczNzYxNTU3NCwiaWF0IjoxNzM3NTI5MTc0LCJqdGkiOiJQUzFzN2xxcmVKdDM2UmZkNUlydW9WQXZvYTNZd1hwT3RSZzEifQ.QxWDv-DqXYnpPLRZxzb_tqqlqkwQUM8kWw0dPtQ7toD-SlNUbcGgCxe57wZLrtJS8amIQUyxbf45I7K-zeJDmQ" ^
+-H "appkey: PS1s7lqreJt36Rfd5IruoVAvoa3YwXpOtRg1" ^
+-H "appsecret: xdBPpLcLlYOyBEDATejRFKYnXBm/iuwHmLUrgccjQzAP66LFp6Yhh3ZKmibX0HFBoFkW8tE3/G1d5T7EZFVxv1u+y6fcPcePC2RI2FSCF1ChZb6stu/PeOxb5Ti048xu0Do0GoGKPTWubieenXSv67pI/tnv38GQ3wzdwu5e2j3Algk6TkE=" ^
+-H "tr_id: FHKST01010400" ^
+-H "custtype: P"

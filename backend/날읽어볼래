@@ -1,0 +1,2 @@
+몰라 이거 멀로 씀?
+      # gunicorn -k uvicorn.workers.UvicornWorker TradeVortex.asgi:application --bind 0.0.0.0:8000 --workers 4 --reload
