@@ -6,6 +6,11 @@ import Spinner from "./components/Spinner.jsx";
 import Footer from "./components/Footer.jsx";
 import Navigation from "./components/Navigation.jsx";
 import ChatApp from "./components/ChatApp.jsx"; // ChatApp 모달 추가
+
+import RealTimeChat from "./components/RealTimeChat.jsx"; // ChatApp 모달 추가
+
+
+
 import Charts from "./pages/Charts.jsx";
 import DetailChart from "./pages/DetailChart.jsx";
 import EmailActivate from "./pages/EmailActivate.jsx"; // Charts 페이지 임포트
@@ -26,6 +31,12 @@ const AppContent = () => {
     const location = useLocation();
     const [chatOpen, setChatOpen] = useState(false);
 
+    // 실시간채팅
+    const [realTimeChatOpen, setRealTimeChatOpen] = useState(true);
+    // 실시간Chat 모달 열기/닫기 핸들러
+    const toggleRealTimeChat = () => setRealTimeChatOpen((prev) => !prev);
+
+
     // 새로고침 또는 페이지 전환 시 스크롤을 맨 위로
     useEffect(() => {
         window.scrollTo({top: 0, behavior: "smooth"});
@@ -35,6 +46,9 @@ const AppContent = () => {
 
     // Chat 모달 열기/닫기 핸들러
     const toggleChat = () => setChatOpen((prev) => !prev);
+
+
+
 
     return (
         <AnimatePresence
@@ -82,6 +96,26 @@ const AppContent = () => {
                     </button>
                 </>
             )}
+
+      {/* 홈 페이지를 제외한 모든 페이지에서 ChatApp 모달 표시 */}
+    {!isHomePage && (
+      <>
+        <div
+          className={`fixed bottom-20 left-5 z-50 p-4 rounded-lg w-full max-w-md h-[700px] bg-transparent overflow-hidden transition-all transform ${
+            realTimeChatOpen ? "block" : "hidden"
+          }`}
+        >
+          <RealTimeChat closeModal={toggleRealTimeChat} />
+        </div>
+        <button
+          onClick={toggleRealTimeChat}
+          className="fixed bottom-5 left-5 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none"
+        >
+          💬
+        </button>
+      </>
+    )}
+
 
         </AnimatePresence>
     );

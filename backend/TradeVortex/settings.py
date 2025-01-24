@@ -35,6 +35,7 @@ SOCIALACCOUNT_PROVIDERS = {
 INSTALLED_APPS = [
     'channels',
     'graphs',
+    'realtimechat',
     'django_filters',
     'freeboard',
     'accounts',
