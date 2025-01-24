@@ -1,0 +1,60 @@
+/* DetailChart.css */
+
+/* 공통 스타일 */
+.chart-container, .loading, .error {
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* 다크 모드 스타일 */
+.chart-container.dark {
+    background-color: #1e1e2f;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.loading.dark, .error.dark {
+    background-color: #1e1e2f;
+    color: #ffffff;
+}
+
+.error.dark {
+    color: #ff4d4f;
+}
+
+/* 라이트 모드 스타일 */
+.chart-container.light {
+    background-color: #f0f2f5;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.loading.light, .error.light {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.error.light {
+    color: #ff4d4f;
+}
+
+/* 로딩 및 에러 메시지 스타일 */
+.loading, .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px; /* 차트 영역과 일치하도록 높이 조정 */
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+/* 지표 토글 컨트롤 스타일 */
+.indicator-controls label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.indicator-controls input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}

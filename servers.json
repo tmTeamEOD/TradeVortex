@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "TVServer",
+      "Group": "Servers",
+      "Host": "psql",
+      "Port": 5432,
+      "Username": "postgres",
+      "Password": "postgres",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "tradevortex"
+    }
+  }
+}

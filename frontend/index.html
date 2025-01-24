@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="로고" />
+    <!-- Kakao SDK -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+    <!-- CSRF Token (서버 템플릿 엔진 사용 시) -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TradeVortex</title>
+
+    <!-- Highcharts 스크립트 추가 -->
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/heikinashi.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators-all.js"></script>
+    <script src="https://code.highcharts.com/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/indicators/rsi.js"></script>
+    <script src="https://code.highcharts.com/indicators/ema.js"></script>
+    <script src="https://code.highcharts.com/indicators/macd.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- React 애플리케이션 진입점 -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
