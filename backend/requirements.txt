@@ -1,5 +1,6 @@
 channels==4.2.0
 crewai==0.95.0
+crewai[tools]
 distro==1.9.0
 dj-rest-auth==7.0.1
 Django==5.1.4
@@ -9,6 +10,7 @@ django-extensions==3.2.3
 django-filter==24.3
 djangorestframework==3.15.2
 djangorestframework-simplejwt==5.3.1
+duckduckgo_search
 gunicorn==23.0.0
 holidays==0.63
 kubernetes==31.0.0
