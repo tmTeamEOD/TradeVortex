@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 const ChatApp = memo(({ closeModal }) => {
-  const isDarkMode = useSelector((state) => state.theme.isDarkMode); // Redux에서 다크모드 상태 가져오기
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
   const [messages, setMessages] = useState([
     {
       id: Date.now(),
@@ -21,9 +21,7 @@ const ChatApp = memo(({ closeModal }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const sendMessage = async () => {
@@ -79,16 +77,11 @@ const ChatApp = memo(({ closeModal }) => {
     }
   };
 
-  const handleInputResize = (e) => {
-    e.target.style.height = "auto";
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  };
-
   return (
     <motion.div
       className={`fixed bottom-4 right-4 ${
         isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
-      } p-6 rounded-2xl shadow-lg w-full max-w-md h-[700px] flex flex-col z-50`}
+      } p-6 rounded-2xl shadow-lg w-full max-w-md h-[700px] flex flex-col z-50 border`}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
@@ -96,77 +89,73 @@ const ChatApp = memo(({ closeModal }) => {
     >
       {/* 헤더 */}
       <div className="flex justify-between items-center border-b pb-4 mb-4">
-        <h3 className="text-xl font-semibold">챗봇</h3>
+        <h3 className="text-xl font-semibold">💬 챗봇</h3>
         <button
           onClick={closeModal}
-          className="text-3xl text-gray-500 hover:text-gray-800 focus:outline-none"
+          className="text-2xl text-gray-500 hover:text-red-500 transition-all"
         >
           ✕
         </button>
       </div>
 
       {/* 메시지 영역 */}
-      <div className="flex-1 overflow-y-auto space-y-4">
+      <div className="flex-1 overflow-y-auto space-y-3 p-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
         {messages.map((msg) => (
-          <div
+          <motion.div
             key={msg.id}
+            initial={{ opacity: 0, x: msg.sender === "You" ? 50 : -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
             className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`p-4 rounded-lg max-w-xs ${
+              className={`p-3 rounded-lg max-w-xs text-sm shadow-md ${
                 msg.sender === "You"
-                  ? "bg-blue-100 text-gray-800"
+                  ? "bg-blue-500 text-white"
                   : msg.sender === "Error"
-                  ? "bg-red-100 text-gray-800"
-                  : "bg-gray-200 text-gray-800"
+                  ? "bg-red-500 text-white"
+                  : "bg-gray-200 text-black"
               }`}
             >
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.text}</ReactMarkdown>
-              <div className="text-xs text-gray-500 mt-1">{msg.time}</div>
+              <div className="text-xs opacity-70 mt-1 text-right">{msg.time}</div>
             </div>
-          </div>
+          </motion.div>
         ))}
+
         {loading && (
-          <div className="flex items-center space-x-2">
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-2 h-2 bg-gray-500 rounded-full"
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 0.6,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                }}
-              />
-            ))}
+          <div className="flex justify-start items-center space-x-2">
+            <motion.div
+              className="p-3 rounded-lg max-w-xs text-sm shadow-md bg-gray-200 text-black"
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ repeat: Infinity, duration: 1 }}
+            >
+              ✨ 챗봇이 응답 중...
+            </motion.div>
           </div>
         )}
+
         <div ref={messagesEndRef} />
       </div>
 
       {/* 입력 영역 */}
-      <div className="mt-4 flex items-center">
+      <div className="mt-3 flex items-center space-x-2">
         <textarea
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          onInput={handleInputResize}
           onKeyPress={handleKeyPress}
           placeholder="무엇이든 물어보세요..."
-          className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700"
+          className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 scrollbar-thin"
           rows={1}
-          style={{ overflow: "hidden" }}
         />
         <button
           onClick={sendMessage}
           disabled={loading}
-          className={`ml-4 px-6 py-2 rounded-md text-white ${
-            loading ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-600"
-          }`}
+          className={`px-4 py-2 rounded-md text-white font-semibold ${
+            loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+          } transition-all`}
         >
-          {loading ? "..." : "보내기"}
+          {loading ? "..." : "📩"}
         </button>
       </div>
     </motion.div>
