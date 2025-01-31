@@ -7,7 +7,7 @@ class AssetType(models.TextChoices):
     OPTION = 'OPTION', 'Option'
     INDEX = 'INDEX', 'Index'
     FOREX = 'FOREX', 'Forex'
-    CRYPTO = 'CRYPTO', 'Crypto'
+    CRYPTO = 'CRYPTO', 'Portfolio'
 
 
 class FinancialData(models.Model):

@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('close', models.DecimalField(decimal_places=2, max_digits=20)),
                 ('volume', models.DecimalField(blank=True, decimal_places=2, max_digits=20, null=True)),
                 ('timestamp', models.DateTimeField()),
-                ('asset_type', models.CharField(choices=[('STOCK', 'Stock'), ('OPTION', 'Option'), ('INDEX', 'Index'), ('FOREX', 'Forex'), ('CRYPTO', 'Crypto')], max_length=10)),
+                ('asset_type', models.CharField(choices=[('STOCK', 'Stock'), ('OPTION', 'Option'), ('INDEX', 'Index'), ('FOREX', 'Forex'), ('CRYPTO', 'Portfolio')], max_length=10)),
                 ('expiration_date', models.DateField(blank=True, null=True)),
                 ('strike_price', models.DecimalField(blank=True, decimal_places=2, max_digits=20, null=True)),
                 ('option_type', models.CharField(blank=True, choices=[('C', 'Call'), ('P', 'Put')], max_length=1, null=True)),

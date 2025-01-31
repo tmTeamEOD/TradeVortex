@@ -55,7 +55,7 @@ const Main = () => {
                                     : "bg-gradient-to-r from-blue-500 to-indigo-500 text-white"
                             }`}
                         >
-                            <h1 className="text-3xl font-bold mb-2">금융의 종말을 탐색하세요</h1>
+                            <h1 className="text-3xl font-bold mb-2">금융의 지존을 탐색하세요</h1>
                             <p className="text-sm font-light">
                                 실시간 데이터와 통찰력 있는 정보를 제공합니다.
                             </p>
@@ -73,7 +73,7 @@ const Main = () => {
                                 },
                                 { id: "schedule", title: "금융 일정", content: "중요한 금융 이벤트와 일정", navigation: "/schedule" },
                                 { id: "charts", title: "실시간 차트", content: "시장 데이터를 한눈에", navigation: "/charts" },
-                                { id: "crypto", title: "암호화폐 트렌드", content: "비트코인과 알트코인 동향", navigation: "/crypto" },
+                                { id: "portfolio", title: "포트폴리오", content: "자산분석 서비스", navigation: "/portfolio" },
                                 {
                                     id: "special",
                                     title: "AI 전문 분석 서비스",
