@@ -3,6 +3,7 @@ FROM python:3.12
 # 필수 패키지 및 Rust 설치
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    libgeos-dev \
     curl \
     && curl https://sh.rustup.rs -sSf | sh -s -- -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
