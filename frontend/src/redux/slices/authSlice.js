@@ -11,7 +11,7 @@ const initialState = {
   error: null,
 };
 
-// 공통 저장 함수
+// 공통 저장 함수: 로그인 성공 시 로컬 스토리지에 저장합니다.
 const saveAuthData = ({ user, accessToken, refreshToken }) => {
   localStorage.setItem("accessToken", accessToken);
   if (refreshToken) {
@@ -23,23 +23,25 @@ const saveAuthData = ({ user, accessToken, refreshToken }) => {
 /**
  * **일반 로그인 Thunk**
  * 이메일과 비밀번호를 이용하여 /accounts/login/ 엔드포인트에 요청합니다.
- * 응답으로 반환된 토큰은 이미 "access"라는 키로 맞춰져 있어야 합니다.
+ * 백엔드 응답은 "access"와 "refresh"라는 키로 토큰을 반환합니다.
  */
 export const loginAsync = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
     try {
+      // 로그인 시에는 기존에 설정된 토큰 헤더가 있으면 제거합니다.
+      delete axios.defaults.headers.common["Authorization"];
+
       const response = await axios.post("/accounts/login/", { email, password });
-      // 백엔드에서 "access"와 "refresh"라는 키로 반환하도록 업데이트하였음
+      // 백엔드에서는 "access"라는 키로 액세스 토큰을 반환합니다.
       const { access, refresh } = response.data;
 
+      // 사용자 프로필을 별도 엔드포인트에서 가져옵니다.
       const userResponse = await axios.get("/accounts/user-profile/", {
         headers: { Authorization: `Bearer ${access}` },
       });
-
       const user = userResponse.data;
       saveAuthData({ user, accessToken: access, refreshToken: refresh });
-
       return { user, accessToken: access, refreshToken: refresh };
     } catch (error) {
       return rejectWithValue(error.response?.data || "Login failed");
@@ -49,13 +51,16 @@ export const loginAsync = createAsyncThunk(
 
 /**
  * **소셜 로그인 Thunk (통합)**
- * provider에 따라 엔드포인트를 선택하여 요청합니다.
- * 백엔드 응답은 "access"와 "refresh"라는 키로 반환합니다.
+ * provider(google, naver, kakao)에 따라 엔드포인트를 선택하여 요청합니다.
+ * 백엔드 응답은 "access"와 "refresh"라는 키로 토큰을 반환합니다.
  */
 export const socialLoginAsync = createAsyncThunk(
   "auth/socialLogin",
   async ({ provider, accessToken }, { rejectWithValue }) => {
     try {
+      // 소셜 로그인 시에도 기존 토큰 헤더 제거
+      delete axios.defaults.headers.common["Authorization"];
+
       const endpointMap = {
         google: "/accounts/google/",
         naver: "/accounts/naver/",
@@ -68,14 +73,14 @@ export const socialLoginAsync = createAsyncThunk(
       }
 
       const response = await axios.post(endpoint, { access_token: accessToken });
-      // 백엔드 응답에서 소셜 로그인은 "access"와 "refresh"라는 키로 반환하도록 업데이트했습니다.
-      const { access: token, refresh: refreshToken, user } = response.data;
-
-      saveAuthData({ user, accessToken: token, refreshToken });
-
-      return { user, accessToken: token, refreshToken };
+      // 백엔드 응답에서 "access"와 "refresh"라는 키를 반환합니다.
+      const { access, refresh, user } = response.data;
+      saveAuthData({ user, accessToken: access, refreshToken: refresh });
+      return { user, accessToken: access, refreshToken: refresh };
     } catch (error) {
-      return rejectWithValue(error.response?.data?.error || "Social login failed");
+      return rejectWithValue(
+        error.response?.data?.error || "Social login failed"
+      );
     }
   }
 );
@@ -105,7 +110,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // **일반 로그인**
+      // **일반 로그인 처리**
       .addCase(loginAsync.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -120,8 +125,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
-      // **소셜 로그인**
+      // **소셜 로그인 처리**
       .addCase(socialLoginAsync.pending, (state) => {
         state.loading = true;
         state.error = null;

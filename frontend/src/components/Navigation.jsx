@@ -14,6 +14,15 @@ import TimezoneSelect from "react-timezone-select";
 import axios from "axios";
 
 const API_BASE_URL = "http://127.0.0.1:8000/api";
+// 백엔드의 도메인 (media 파일은 이 도메인을 사용)
+const BACKEND_DOMAIN = "http://127.0.0.1:8000";
+
+// 상대 경로 URL을 절대 경로로 변환하는 헬퍼 함수
+const getAbsoluteUrl = (url) => {
+  if (!url) return "";
+  // 만약 url이 이미 http로 시작하면 그대로 사용, 아니라면 백엔드 도메인을 붙임.
+  return url.startsWith("http") ? url : `${BACKEND_DOMAIN}${url}`;
+};
 
 // 초기 상태
 const initialState = {
@@ -192,34 +201,25 @@ const Navigation = () => {
             >
               <div className="flex items-center space-x-2">
                 <img
-                  src={userProfile.profile_picture_url || "/default-avatar.jpg"}
+                  // 프로필 사진 URL이 상대경로인 경우 백엔드 도메인을 붙여 절대 경로로 변환
+                  src={getAbsoluteUrl(userProfile.profile_picture_url) || "/default-avatar.jpg"}
                   alt={`${userProfile.username || "User"}'s Profile`}
                   className="w-8 h-8 rounded-full border-2 border-gray-300 dark:border-gray-600"
                 />
-                <span
-                  className={`font-semibold ${
-                    isDarkMode ? "text-gray-200" : "text-gray-800"
-                  }`}
-                >
+                <span className={`font-semibold ${isDarkMode ? "text-gray-200" : "text-gray-800"}`}>
                   {userProfile.username}
                 </span>
               </div>
               <AnimatePresence>
                 {state.isDropdownOpen && (
                   <motion.div
-                    className={`absolute right-0 w-48 ${
-                      isDarkMode ? "bg-gray-800" : "bg-white"
-                    } shadow-lg rounded-md mt-2 z-50`}
+                    className={`absolute right-0 w-48 ${isDarkMode ? "bg-gray-800" : "bg-white"} shadow-lg rounded-md mt-2 z-50`}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div
-                      className={`py-2 px-4 ${
-                        isDarkMode ? "text-gray-200" : "text-gray-800"
-                      }`}
-                    >
+                    <div className={`py-2 px-4 ${isDarkMode ? "text-gray-200" : "text-gray-800"}`}>
                       <Link
                         to="/profile"
                         className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700`}
