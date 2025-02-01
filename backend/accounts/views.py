@@ -138,10 +138,6 @@ class ActivateAccountView(APIView):
 # =============================================================================
 
 class LoginView(APIView):
-    """
-    로그인 뷰 - 이메일과 비밀번호를 사용하여 인증하고,
-    이메일 인증이 완료되지 않은 경우 토큰 발행 없이 오류 메시지를 반환합니다.
-    """
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -162,26 +158,24 @@ class LoginView(APIView):
                     status=status.HTTP_401_UNAUTHORIZED
                 )
 
-            # 이메일 인증 여부 검사
             if not getattr(user, "is_verified", False):
                 return Response(
                     {"error": "이메일 인증이 완료되지 않았습니다. 인증 메일을 확인해주세요."},
                     status=status.HTTP_403_FORBIDDEN
                 )
 
-            # 인증이 완료된 경우에만 토큰 발행
             refresh = RefreshToken.for_user(user)
             user.last_login = datetime.now()
             user.save()
+
             return Response({
-                "access": str(refresh.access_token),  # 클라이언트가 기대하는 키 이름
-                "refresh": str(refresh),
+                "access_token": str(refresh.access_token),  # access_token
+                "refresh_token": str(refresh),  # refresh_token
                 "user": {
                     "id": user.id,
                     "username": user.username,
                     "email": user.email,
-                    "profile_picture_url": user.profile_picture.url if hasattr(user,
-                                                                               'profile_picture') and user.profile_picture else None,
+                    "profile_picture_url": user.profile_picture.url if hasattr(user, 'profile_picture') and user.profile_picture else None,
                 }
             }, status=status.HTTP_200_OK)
 
@@ -193,10 +187,6 @@ class LoginView(APIView):
 
 
 class GoogleLoginView(APIView):
-    """
-    Google 소셜 로그인을 처리합니다.
-    액세스 토큰이 없거나, 사용자 정보를 가져오는데 실패하면 적절한 오류 메시지를 반환합니다.
-    """
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -207,7 +197,6 @@ class GoogleLoginView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Google API를 통해 사용자 정보 가져오기
         response = requests.get(
             "https://www.googleapis.com/oauth2/v2/userinfo",
             headers={"Authorization": f"Bearer {access_token}"}
@@ -235,30 +224,24 @@ class GoogleLoginView(APIView):
             defaults={"username": name or email.split('@')[0]}
         )
 
-        # 프로필 사진 저장 (필요한 경우)
         if created and picture:
             save_profile_picture(user, picture)
 
         refresh = RefreshToken.for_user(user)
         return Response({
-            "access": str(refresh.access_token),
-            "refresh": str(refresh),
+            "access_token": str(refresh.access_token),  # access_token
+            "refresh_token": str(refresh),  # refresh_token
             "user": {
                 "id": user.id,
                 "username": user.username,
                 "email": user.email,
-                "profile_picture_url": user.profile_picture.url if hasattr(user,
-                                                                           'profile_picture') and user.profile_picture else None,
+                "profile_picture_url": user.profile_picture.url if hasattr(user, 'profile_picture') and user.profile_picture else None,
             },
             "isNewUser": created,
         }, status=status.HTTP_200_OK)
 
 
 class NaverLoginView(APIView):
-    """
-    Naver 소셜 로그인을 처리합니다.
-    필요한 정보(코드, state 등)가 누락되었거나 토큰/프로필 정보를 가져오지 못하면 오류 메시지를 반환합니다.
-    """
     permission_classes = [AllowAny]
 
     def get(self, request):
@@ -369,8 +352,8 @@ class KakaoLoginView(APIView):
 
         refresh = RefreshToken.for_user(user)
         return Response({
-            "access": str(refresh.access_token),
-            "refresh": str(refresh),
+            "access_token": str(refresh.access_token),  # access_token
+            "refresh_token": str(refresh),  # refresh_token
             "user": {
                 "id": user.id,
                 "username": user.username,
@@ -493,3 +476,58 @@ class UserProfileUpdateView(APIView):
             }, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+import time
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+from django.conf import settings
+import jwt
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
+
+User = get_user_model()
+
+@api_view(['POST'])
+def refresh_token(request):
+    refresh_token = request.data.get('refresh_token')
+
+    if not refresh_token:
+        return Response({"detail": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        # Decode the refresh token and check its validity
+        decoded_refresh_token = jwt.decode(refresh_token, settings.SECRET_KEY, algorithms=["HS256"])
+
+        # Get user_id and expiration time from the token
+        user_id = decoded_refresh_token.get('user_id')
+        if not user_id:
+            return Response({"detail": "Invalid refresh token: User ID missing."}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Check if the token has expired using 'exp' claim
+        exp = decoded_refresh_token.get('exp')
+        if exp and exp < int(time.time()):
+            return Response({"detail": "Refresh token has expired"}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Get the user from the database
+        user = User.objects.get(id=user_id)
+
+        # Issue a new refresh token and access token
+        refresh = RefreshToken.for_user(user)
+        new_access_token = str(refresh.access_token)
+
+        return Response({
+            'access_token': new_access_token,  # New access token
+            'refresh_token': str(refresh),  # New refresh token (optional)
+        }, status=status.HTTP_200_OK)
+
+    except jwt.ExpiredSignatureError:
+        return Response({"detail": "Refresh token has expired"}, status=status.HTTP_401_UNAUTHORIZED)
+    except jwt.DecodeError:
+        return Response({"detail": "Invalid refresh token"}, status=status.HTTP_401_UNAUTHORIZED)
+    except ObjectDoesNotExist:
+        return Response({"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({"detail": f"Unexpected error: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

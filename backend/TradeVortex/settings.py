@@ -1,16 +1,17 @@
 from datetime import timedelta
 from pathlib import Path
 
+
+SECRET_KEY = 'your_random_secret_key_here'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
-SECRET_KEY = 'django-insecure-wwek)^fva&kh&b=yc)80b+s)3a$4m&jovjv!&-(+y$14-san6p'
 DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost','0.0.0.0']
 
 STATIC_ROOT = "/app/staticfiles"  # 컨테이너 내의 경로로 설정
-JWT_SECRET_KEY = 'your_random_secret_key_here'
 FRONTEND_URL = "http://127.0.0.1:3000"
 CACHES = {
     'default': {
@@ -139,10 +140,10 @@ CORS_ALLOW_METHODS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tradevortex',  # Database name
-        'USER': 'postgres',  # PostgreSQL user (psql 서비스에서 설정한 POSTGRES_USER와 동일해야 함)
-        'PASSWORD': 'postgres',  # PostgreSQL password (psql 서비스에서 설정한 POSTGRES_PASSWORD와 동일해야 함)
-        'HOST': 'psql',  # PostgreSQL 컨테이너 이름
+        'NAME': 'bigdata28_p2_2',  # Database name
+        'USER': 'mp_24k_bigdata28_p2_2',  # PostgreSQL user (psql 서비스에서 설정한 POSTGRES_USER와 동일해야 함)
+        'PASSWORD': 'smhrd2',  # PostgreSQL password (psql 서비스에서 설정한 POSTGRES_PASSWORD와 동일해야 함)
+        'HOST': 'mp.smhrd.or.kr',  # PostgreSQL 컨테이너 이름
         'PORT': '5432',  # PostgreSQL 기본 포트
     }
 }
@@ -165,12 +166,12 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Access Token 유효기간
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=5),  # Access Token 유효기간
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Refresh Token 유효기간
     'ROTATE_REFRESH_TOKENS': True,  # Refresh Token 갱신 시 새 Refresh Token 발급
     'BLACKLIST_AFTER_ROTATION': True,  # 이전 Refresh Token을 블랙리스트에 추가
     'ALGORITHM': 'HS256',  # 알고리즘
-    'SIGNING_KEY': 'your-secret-key',  # 시크릿 키 (환경 변수로 관리 권장)
+    'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),  # Authorization 헤더 타입
 }
 

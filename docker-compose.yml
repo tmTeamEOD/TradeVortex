@@ -31,8 +31,8 @@ services:
       - DJANGO_SETTINGS_MODULE=TradeVortex.settings
       - DATABASE_URL=postgres://postgres:postgres@psql:5432/tradevortex
     depends_on:
-      psql:
-        condition: service_healthy
+#      psql:
+#        condition: service_healthy
       pgadmin:
         condition: service_started
     command: >
@@ -42,23 +42,23 @@ services:
       uvicorn TradeVortex.asgi:application --host 0.0.0.0 --port 8000 --reload
       "
 
-  psql:
-    image: postgres:16  # ✅ 공식 PostgreSQL 이미지 사용
-    container_name: psql
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: tradevortex
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data  # ✅ 볼륨 설정
-    healthcheck:  # ✅ Healthcheck 추가
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+#  psql:
+#    image: postgres:16  # ✅ 공식 PostgreSQL 이미지 사용
+#    container_name: psql
+#    restart: unless-stopped
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_DB: tradevortex
+#    volumes:
+#      - ./postgres_data:/var/lib/postgresql/data  # ✅ 볼륨 설정
+#    healthcheck:  # ✅ Healthcheck 추가
+#      test: ["CMD-SHELL", "pg_isready -U postgres"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
 
   pgadmin:
     image: dpage/pgadmin4
@@ -71,10 +71,10 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - ./servers.json:/pgadmin4/servers.json  # 초기 서버 설정 파일 마운트
-    depends_on:
-      psql:
-        condition: service_healthy
+#    depends_on:
+#      psql:
+#        condition: service_healthy
 
 volumes:
-  postgresql_data:  # ✅ PostgreSQL 데이터 저장
+#  postgresql_data:  # ✅ PostgreSQL 데이터 저장
   pgadmin_data:  # ✅ pgAdmin 데이터 저장

@@ -99,7 +99,7 @@ const BoardPosts = () => {
       console.error("Error creating post:", error);
       if (error.response && error.response.status === 401) {
         alert("You are not authorized. Please log in.");
-        navigate("/login");
+        navigate("/");
       } else {
         alert("Failed to create post.");
       }

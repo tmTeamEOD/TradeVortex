@@ -3,6 +3,8 @@ from .views import GoogleLoginView, UserProfileView, NaverLoginView, CustomRegis
     ActivateAccountView
 from .views import CheckEmailAvailability, CheckUsernameAvailability, UserProfileUpdateView
 # from .views import set_csrf_token
+from .views import refresh_token
+
 from .views import LoginView
 urlpatterns = [
     path('signup/', CustomRegisterView.as_view(), name='rest_register'),  # 회원가입
@@ -18,6 +20,7 @@ urlpatterns = [
     # path('csrf/', set_csrf_token, name='csrf'),
     path('kakao/', KakaoLoginView.as_view(), name='validate-token'),
     path('user-profile/update/', UserProfileUpdateView.as_view(), name='update_profile'),  # 프로필 수정
+    path('refresh-token/', refresh_token, name='refresh-token'),
 
 ]
 from django.conf import settings
