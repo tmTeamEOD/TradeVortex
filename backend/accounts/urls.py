@@ -1,7 +1,7 @@
 from django.urls import path, include
 from .views import GoogleLoginView, UserProfileView, NaverLoginView, CustomRegisterView, KakaoLoginView, \
     ActivateAccountView
-from .views import CheckEmailAvailability, CheckUsernameAvailability
+from .views import CheckEmailAvailability, CheckUsernameAvailability, UserProfileUpdateView
 # from .views import set_csrf_token
 from .views import LoginView
 urlpatterns = [
@@ -17,6 +17,7 @@ urlpatterns = [
     path('check_username/', CheckUsernameAvailability.as_view(), name='check_username'),  # 닉네임 중복 확인
     # path('csrf/', set_csrf_token, name='csrf'),
     path('kakao/', KakaoLoginView.as_view(), name='validate-token'),
+    path('user-profile/update/', UserProfileUpdateView.as_view(), name='update_profile'),  # 프로필 수정
 
 ]
 from django.conf import settings

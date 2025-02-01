@@ -434,3 +434,62 @@ class CheckUsernameAvailability(APIView):
             )
         exists = User.objects.filter(username=username).exists()
         return Response({"exists": exists})
+
+from rest_framework import serializers, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+
+User = get_user_model()
+
+class UserProfileUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'profile_picture', 'bio', 'phone_number']
+
+    def validate_username(self, value):
+        # 닉네임 중복 확인
+        if User.objects.filter(username=value).exists():
+            raise ValidationError("이 닉네임은 이미 사용 중입니다.")
+        return value
+
+    def validate_email(self, value):
+        # 이메일 중복 확인
+        if User.objects.filter(email=value).exists():
+            raise ValidationError("이 이메일은 이미 사용 중입니다.")
+        return value
+
+
+class UserProfileUpdateView(APIView):
+    """
+    인증된 사용자가 자신의 프로필을 수정하는 뷰입니다.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        # 현재 프로필 정보 반환
+        return Response({
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "profile_picture_url": user.profile_picture.url if user.profile_picture else None,
+            "bio": user.bio,
+            "phone_number": user.phone_number,
+        })
+
+    def put(self, request):
+        user = request.user
+        serializer = UserProfileUpdateSerializer(user, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            # 유효성 검사 통과 후 프로필 업데이트
+            serializer.save()
+            return Response({
+                "message": "프로필이 성공적으로 업데이트되었습니다.",
+                "user": serializer.data
+            }, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

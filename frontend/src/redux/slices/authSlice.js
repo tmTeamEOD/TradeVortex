@@ -27,21 +27,27 @@ const saveAuthData = ({ user, accessToken, refreshToken }) => {
  */
 export const loginAsync = createAsyncThunk(
   "auth/login",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue, getState }) => {
     try {
-      // 로그인 시에는 기존에 설정된 토큰 헤더가 있으면 제거합니다.
-      delete axios.defaults.headers.common["Authorization"];
+      // 로컬 스토리지에서 토큰을 가져온 후 유효성 검사
+      const accessToken = localStorage.getItem("accessToken");
+      if (accessToken && !isTokenExpired(accessToken)) {
+        // 토큰이 유효하면 기존 데이터를 그대로 사용
+        const user = JSON.parse(localStorage.getItem("user"));
+        return { user, accessToken, refreshToken: localStorage.getItem("refreshToken") };
+      }
 
+      // 토큰이 없거나 만료된 경우 새로 로그인 진행
+      delete axios.defaults.headers.common["Authorization"];
       const response = await axios.post("/accounts/login/", { email, password });
-      // 백엔드에서는 "access"라는 키로 액세스 토큰을 반환합니다.
       const { access, refresh } = response.data;
 
-      // 사용자 프로필을 별도 엔드포인트에서 가져옵니다.
       const userResponse = await axios.get("/accounts/user-profile/", {
         headers: { Authorization: `Bearer ${access}` },
       });
       const user = userResponse.data;
       saveAuthData({ user, accessToken: access, refreshToken: refresh });
+
       return { user, accessToken: access, refreshToken: refresh };
     } catch (error) {
       return rejectWithValue(error.response?.data || "Login failed");
@@ -84,6 +90,13 @@ export const socialLoginAsync = createAsyncThunk(
     }
   }
 );
+
+// 토큰이 만료되었는지 확인하는 함수 (예: JWT 토큰)
+function isTokenExpired(token) {
+  const decoded = JSON.parse(atob(token.split('.')[1]));
+  const expirationTime = decoded.exp * 1000; // exp는 초 단위, 밀리초로 변환
+  return Date.now() > expirationTime;
+}
 
 // Slice 생성
 const authSlice = createSlice({
