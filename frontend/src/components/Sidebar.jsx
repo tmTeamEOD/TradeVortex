@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux"; // Redux hook import
+import { toggleDarkMode } from "../redux/slices/themeSlice"; // 액션 임포트
 
-const Sidebar = ({ isDarkMode }) => {
+const Sidebar = () => {
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode); // Redux에서 다크모드 상태 가져오기
+
   const [expandedMenu, setExpandedMenu] = useState(null);
 
   const menuItems = [
@@ -16,68 +21,63 @@ const Sidebar = ({ isDarkMode }) => {
     setExpandedMenu(expandedMenu === index ? null : index);
   };
 
+  // 다크모드 토글 함수
+  const handleToggleDarkMode = () => {
+    dispatch(toggleDarkMode()); // Redux 액션 호출하여 다크모드 상태 변경
+  };
+
   return (
-      <aside
-          className={`sticky top-[calc(var(--nav-height, 60px))] left-0 w-16 lg:w-56 h-[calc(100vh - 60px)] z-10 ${
-              isDarkMode ? "bg-gray-900 text-gray-200" : "bg-gray-100 text-gray-900"
-          } shadow-md transition-all duration-300 overflow-y-auto`}
-      >
-        <div className="flex flex-col items-center lg:items-start p-4 space-y-4">
-          {/* 로고 */}
-          <div className="w-full flex items-center justify-center lg:justify-start">
-      <span
-          className={`text-xl font-semibold ${
-              isDarkMode ? "text-indigo-400" : "text-indigo-600"
-          }`}
-      >
-        지미졸리네
-      </span>
-          </div>
+    <aside
+      className={`z-20 w-full h-screen left-0 lg:w-56 ${
+        isDarkMode ? "bg-gray-900 text-gray-200" : "bg-gray-100 text-gray-900"
+      } shadow-md transition-all duration-300 overflow-y-auto`}
+    >
+      <div className="flex-col items-center lg:items-start p-4 space-y-4">
+        {/* 메뉴 항목들 */}
+        <ul className="w-full space-y-3">
+          {menuItems.map((item, index) => (
+            <li key={index} className="w-full">
+              <div
+                className={`flex items-center w-full px-4 py-2 rounded-md cursor-pointer ${
+                  isDarkMode
+                    ? "hover:bg-indigo-600 hover:text-white"
+                    : "hover:bg-indigo-100 hover:text-indigo-600"
+                }`}
+                onClick={() => toggleMenu(index)}
+              >
+                <i className={`${item.icon} text-xl lg:text-2xl`}></i>
+                <span className="ml-3 text-sm lg:text-base text-ellipsis overflow-hidden whitespace-nowrap lg:inline-block">
+                  {item.label}
+                </span>
+              </div>
 
-          <ul className="w-full space-y-3">
-            {menuItems.map((item, index) => (
-                <li key={index} className="w-full">
-                  <div
-                      className={`flex items-center w-full px-4 py-2 rounded-md cursor-pointer ${
-                          isDarkMode
-                              ? "hover:bg-indigo-600 hover:text-white"
-                              : "hover:bg-indigo-100 hover:text-indigo-600"
+              {/* 소메뉴 */}
+              {expandedMenu === index && (
+                <motion.ul
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="pl-6 mt-2 space-y-2"
+                >
+                  {item.submenu.map((submenuItem, subIndex) => (
+                    <li
+                      key={subIndex}
+                      className={`text-sm font-light px-4 py-1 rounded-md cursor-pointer ${
+                        isDarkMode
+                          ? "hover:bg-indigo-700 hover:text-white"
+                          : "hover:bg-indigo-200 hover:text-indigo-800"
                       }`}
-                      onClick={() => toggleMenu(index)}
-                  >
-                    <i className={`${item.icon} text-lg`}></i>
-                    <span className="hidden lg:inline-block text-sm font-medium ml-3">
-              {item.label}
-            </span>
-                  </div>
-
-                  {/* 소메뉴 */}
-                  {expandedMenu === index && (
-                      <motion.ul
-                          initial={{opacity: 0, height: 0}}
-                          animate={{opacity: 1, height: "auto"}}
-                          exit={{opacity: 0, height: 0}}
-                          className="pl-6 mt-2 space-y-2"
-                      >
-                        {item.submenu.map((submenuItem, subIndex) => (
-                            <li
-                                key={subIndex}
-                                className={`text-sm font-light px-4 py-1 rounded-md cursor-pointer ${
-                                    isDarkMode
-                                        ? "hover:bg-indigo-700 hover:text-white"
-                                        : "hover:bg-indigo-200 hover:text-indigo-800"
-                                }`}
-                            >
-                              {submenuItem}
-                            </li>
-                        ))}
-                      </motion.ul>
-                  )}
-                </li>
-            ))}
-          </ul>
-        </div>
-      </aside>
+                    >
+                      {submenuItem}
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
   );
 };
 

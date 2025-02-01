@@ -6,6 +6,7 @@ import Spinner from "./components/Spinner.jsx";
 import Footer from "./components/Footer.jsx";
 import Navigation from "./components/Navigation.jsx";
 import ChatApp from "./components/ChatApp.jsx";
+import Sidebar from "./components/Sidebar.jsx"; // 사이드바 임포트 추가
 import News from "./pages/News.jsx";
 import Charts from "./pages/Charts.jsx";
 import DetailChart from "./pages/DetailChart.jsx";
@@ -33,7 +34,7 @@ const AppContent = () => {
         window.scrollTo({top: 0, behavior: "smooth"});
     }, [location.pathname]);
 
-    const isHomePage = location.pathname === "/";
+    const isHomePage = location.pathname === "/"; // /home 경로 확인
 
     // Chat 모달 열기/닫기 핸들러 (useCallback 적용)
     const toggleChat = useCallback(() => {
@@ -42,30 +43,42 @@ const AppContent = () => {
 
     return (
         <AnimatePresence mode="sync">
-            {!isHomePage && <Navigation key="navigation"/>}
+            {/* Navigation is fixed at the top */}
+            {!isHomePage && (
+                <Navigation className="fixed w-full" key="navigation"/>
+            )}
 
-            <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/main" element={<Main/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/boards" element={<BoardList/>}/>
-                <Route path="/news" element={<News/>}/>
-                <Route path="/discussion" element={<Toron/>}/>
-                <Route path="/portfolio" element={<Portfolio/>}/>
-                <Route path="/schedule" element={<Schedule/>}/>
+            {/* 사이드바 표시 조건 */}
+            {!isHomePage && (
+                <div className="fixed h-full z-10 mt-[60px]">
+                    <Sidebar/>
+                </div>
+            )}
 
+            {/* /home 이 아닐 때만 마진을 적용 */}
+            <div className={`flex-grow ${isHomePage ? '' : 'mt-[60px]'}`}>
+                <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/main" element={<Main/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/boards" element={<BoardList/>}/>
+                    <Route path="/news" element={<News/>}/>
+                    <Route path="/discussion" element={<Toron/>}/>
+                    <Route path="/portfolio" element={<Portfolio/>}/>
+                    <Route path="/schedule" element={<Schedule/>}/>
+                    <Route path="/boards/:boardId" element={<BoardPosts/>}/>
+                    <Route path="/charts" element={<Charts/>}/>
+                    <Route path="/charts/:symbol" element={<DetailChart/>}/>
+                    <Route path="/activate" element={<EmailActivate/>}/>
+                    <Route path="/posts/:postId" element={<PostDetail/>}/>
+                    <Route path="/signup" element={<Signup/>}/>
+                    <Route path="/profile" element={<ProfilePage/>}/>
+                    <Route path="/edit-profile" element={<EditProfilePage/>}/>
+                    <Route path="*" element={<NotFound/>}/>
+                </Routes>
+                <Footer className="fixed bottom-0 w-full"/>
 
-
-                <Route path="/boards/:boardId" element={<BoardPosts/>}/>
-                <Route path="/charts" element={<Charts/>}/>
-                <Route path="/charts/:symbol" element={<DetailChart/>}/>
-                <Route path="/activate" element={<EmailActivate/>}/>
-                <Route path="/posts/:postId" element={<PostDetail/>}/>
-                <Route path="/signup" element={<Signup/>}/>
-                <Route path="/profile" element={<ProfilePage/>}/>
-                <Route path="/edit-profile" element={<EditProfilePage/>}/>
-                <Route path="*" element={<NotFound/>}/>
-            </Routes>
+            </div>
 
             {/* Chat 모달 애니메이션 적용 */}
             {!isHomePage && (
@@ -104,11 +117,15 @@ const App = () => {
                 <div className="flex flex-col min-h-screen">
                     <Suspense fallback={<Spinner/>}>
                         <AppContent/>
+
                     </Suspense>
-                    <Footer/>
+
                 </div>
+
             </ParallaxProvider>
+
         </Router>
+
     );
 };
 
