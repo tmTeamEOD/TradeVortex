@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeVortex - 이메일 인증</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            width: 160px;
+            margin-bottom: 20px;
+        }
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+        .sub-header {
+            font-size: 16px;
+            font-weight: normal;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .highlight {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4F46E5;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #4F46E5, #3B82F6);
+            color: white;
+            padding: 14px 26px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #3B82F6, #4F46E5);
+            transform: scale(1.05);
+        }
+        .info-box {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 20px;
+            font-weight: 400;
+        }
+        .footer {
+            font-size: 12px;
+            color: gray;
+            margin-top: 25px;
+        }
+
+        /* 다크 모드 스타일 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #18181B;
+                color: #E5E7EB;
+            }
+            .container {
+                background: #1F2937;
+                color: white;
+            }
+            .header {
+                color: #93c5fd;
+            }
+            .sub-header {
+                color: #9ca3af;
+            }
+            .message {
+                color: #E5E7EB;
+            }
+            .info-box {
+                background: #374151;
+                color: #d1d5db;
+            }
+            .btn {
+                background: linear-gradient(90deg, #6366F1, #60A5FA);
+            }
+            .btn:hover {
+                background: linear-gradient(90deg, #60A5FA, #6366F1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TradeVortex 로고 -->
+        <img src="https://your-logo-url.com/tradevortex-logo.png" alt="TradeVortex" class="logo">
+
+        <div class="header">TradeVortex 이메일 인증</div>
+        <div class="sub-header">보안을 위해 이메일을 인증해주세요!</div>
+
+        <p class="message">
+            안녕하세요, <span class="highlight">{{ user.username }}</span>님! <br>
+            TradeVortex의 서비스를 안전하게 이용하려면 이메일 인증이 필요합니다.
+        </p>
+
+        <a href="{{ activate_url }}" class="btn">이메일 인증하기</a>
+
+        <div class="info-box">
+            이메일 인증을 완료해야 모든 기능을 사용할 수 있습니다.<br>
+            링크는 <strong>24시간 동안</strong>만 유효합니다.
+        </div>
+
+        <p class="footer">© 2025 TradeVortex. All rights reserved.</p>
+    </div>
+</body>
+</html>

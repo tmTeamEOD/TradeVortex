@@ -20,12 +20,17 @@ const saveAuthData = ({ user, accessToken, refreshToken }) => {
   localStorage.setItem("user", JSON.stringify(user));
 };
 
-// **일반 로그인 Thunk**
+/**
+ * **일반 로그인 Thunk**
+ * 이메일과 비밀번호를 이용하여 /accounts/login/ 엔드포인트에 요청합니다.
+ * 응답으로 반환된 토큰은 이미 "access"라는 키로 맞춰져 있어야 합니다.
+ */
 export const loginAsync = createAsyncThunk(
   "auth/login",
-  async ({ email, username, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/token2/", { email, username, password });
+      const response = await axios.post("/accounts/login/", { email, password });
+      // 백엔드에서 "access"와 "refresh"라는 키로 반환하도록 업데이트하였음
       const { access, refresh } = response.data;
 
       const userResponse = await axios.get("/accounts/user-profile/", {
@@ -42,7 +47,11 @@ export const loginAsync = createAsyncThunk(
   }
 );
 
-// **소셜 로그인 Thunk (통합)**
+/**
+ * **소셜 로그인 Thunk (통합)**
+ * provider에 따라 엔드포인트를 선택하여 요청합니다.
+ * 백엔드 응답은 "access"와 "refresh"라는 키로 반환합니다.
+ */
 export const socialLoginAsync = createAsyncThunk(
   "auth/socialLogin",
   async ({ provider, accessToken }, { rejectWithValue }) => {
@@ -59,7 +68,8 @@ export const socialLoginAsync = createAsyncThunk(
       }
 
       const response = await axios.post(endpoint, { access_token: accessToken });
-      const { access_token: token, refresh_token: refreshToken, user } = response.data;
+      // 백엔드 응답에서 소셜 로그인은 "access"와 "refresh"라는 키로 반환하도록 업데이트했습니다.
+      const { access: token, refresh: refreshToken, user } = response.data;
 
       saveAuthData({ user, accessToken: token, refreshToken });
 
@@ -70,7 +80,7 @@ export const socialLoginAsync = createAsyncThunk(
   }
 );
 
-// Slice
+// Slice 생성
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -129,6 +139,5 @@ const authSlice = createSlice({
   },
 });
 
-// 액션과 리듀서 내보내기
 export const { logout, setAuth } = authSlice.actions;
 export default authSlice.reducer;
