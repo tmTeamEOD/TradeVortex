@@ -8,11 +8,11 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/app  # 로컬 코드와 컨테이너 코드 동기화
-      - /app/node_modules  # node_modules를 컨테이너 내부에서 관리
+      - ./frontend:/app
+      - /app/node_modules
     environment:
-      - VITE_DEV_SERVER_HMR_HOST=host.docker.internal # Docker 호스트에 연결
-      - VITE_DEV_SERVER_HMR_PORT=3000                # WebSocket 포트 설정
+      - VITE_DEV_SERVER_HMR_HOST=host.docker.internal
+      - VITE_DEV_SERVER_HMR_PORT=3000
       - CHOKIDAR_USEPOLLING=true
       - NODE_ENV=development
     command: >
@@ -25,56 +25,69 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app  # 로컬 코드와 컨테이너 코드 동기화
+      - ./backend:/app
     environment:
       - PYTHONUNBUFFERED=1
       - DJANGO_SETTINGS_MODULE=TradeVortex.settings
       - DATABASE_URL=postgres://postgres:postgres@psql:5432/tradevortex
+      - CELERY_BROKER_URL=redis://redis:6379/0  # Redis 연결
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:
-#      psql:
-#        condition: service_healthy
-      pgadmin:
-        condition: service_started
+      - redis
+      - pgadmin
     command: >
       sh -c "
+      python manage.py makemigrations &&
       python manage.py migrate &&
       python manage.py collectstatic --noinput &&
       uvicorn TradeVortex.asgi:application --host 0.0.0.0 --port 8000 --reload
       "
 
-#  psql:
-#    image: postgres:16  # ✅ 공식 PostgreSQL 이미지 사용
-#    container_name: psql
-#    restart: unless-stopped
-#    ports:
-#      - "5432:5432"
-#    environment:
-#      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: postgres
-#      POSTGRES_DB: tradevortex
-#    volumes:
-#      - ./postgres_data:/var/lib/postgresql/data  # ✅ 볼륨 설정
-#    healthcheck:  # ✅ Healthcheck 추가
-#      test: ["CMD-SHELL", "pg_isready -U postgres"]
-#      interval: 10s
-#      timeout: 5s
-#      retries: 5
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    volumes:
+      - redis_volume_data:/data
+    ports:
+      - 6379:6379
+
+  redis-insight:
+    image: redis/redisinsight
+    container_name: redis_insight
+    restart: always
+    ports:
+      - 5540:5540
+    volumes:
+      - redis_insight_volume_data:/db
+
+  celery:
+    container_name: celery
+    build:
+      context: backend
+    command: celery -A TradeVortex worker --loglevel=info
+    depends_on:
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0  # Redis 연결
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    volumes:
+      - ./backend:/app
+    # 추가적으로 대기 로직을 넣을 수 있습니다
 
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com  # 로그인 이메일
-      PGADMIN_DEFAULT_PASSWORD: admin        # 로그인 비밀번호
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "5050:80"  # pgAdmin 웹 UI에 접근할 포트
+      - "5050:80"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
-      - ./servers.json:/pgadmin4/servers.json  # 초기 서버 설정 파일 마운트
-#    depends_on:
-#      psql:
-#        condition: service_healthy
+      - ./servers.json:/pgadmin4/servers.json
 
 volumes:
-#  postgresql_data:  # ✅ PostgreSQL 데이터 저장
-  pgadmin_data:  # ✅ pgAdmin 데이터 저장
+  redis_volume_data:
+  pgadmin_data:
+  redis_insight_volume_data:

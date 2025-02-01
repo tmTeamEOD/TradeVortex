@@ -25,9 +25,9 @@ const Main = () => {
     const coinSymbols = ["KRW-BTC", "KRW-ETH", "KRW-XRP", "KRW-BCH"];
 
     const newsItems = [
-        {title: "금융 시장 오늘의 동향", description: "금융 시장에서 일어난 최신 사건들을 확인하세요."},
-        {title: "주식 시장 분석", description: "주식 시장의 현재 상태와 분석."},
-        {title: "비트코인 상승", description: "비트코인의 가격 상승과 그에 따른 시장 반응."},
+        {title: "금융 시장 오늘의 동향", description: "금융 시장에서 일어난 최신 사건들을 확인하세요.", link: "/news/market"},
+        {title: "주식 시장 분석", description: "주식 시장의 현재 상태와 분석.", link: "/news/stock"},
+        {title: "비트코인 상승", description: "비트코인의 가격 상승과 그에 따른 시장 반응.", link: "/news/bitcoin"},
     ];
 
     return (
@@ -62,7 +62,7 @@ const Main = () => {
                         className="mySwiper h-[20vh] "
                     >
                         {newsItems.map((item, index) => (
-                            <SwiperSlide key={index} className="relative flex items-center justify-center h-[400px] pl-4">
+                            <SwiperSlide key={index} className="relative flex items-center justify-center h-[400px] pl-4" onClick={() => navigate(item.link)}>
                                 {/* 이미지 */}
                                 <div className="relative w-full h-full">
                                     <img
@@ -83,7 +83,6 @@ const Main = () => {
                         ))}
                     </Swiper>
                 </div>
-
 
                 <div className="relative flex">
                     <main className="flex-grow p-3 ml-16 lg:ml-56">

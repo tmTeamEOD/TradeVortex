@@ -1,6 +1,15 @@
 from datetime import timedelta
 from pathlib import Path
 
+# Celery 설정
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Redis 브로커 URL
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Redis를 결과 백엔드로 사용
+
+# Celery 태스크 모듈
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Seoul'  # 시간대 설정
 
 SECRET_KEY = 'your_random_secret_key_here'
 
@@ -105,7 +114,10 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('redis', 6379)],  # Redis 호스트와 포트 설정
+        },
     },
 }
 
@@ -166,7 +178,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=5),  # Access Token 유효기간
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Access Token 유효기간
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Refresh Token 유효기간
     'ROTATE_REFRESH_TOKENS': True,  # Refresh Token 갱신 시 새 Refresh Token 발급
     'BLACKLIST_AFTER_ROTATION': True,  # 이전 Refresh Token을 블랙리스트에 추가
@@ -241,17 +253,23 @@ SITE_ID = 1
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
 
+# settings.py
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
+            'level': 'DEBUG',  # DEBUG 로그 출력
             'class': 'logging.StreamHandler',
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # DEBUG 레벨 로그를 출력
+            'propagate': True,
+        },
     },
 }
 import os
