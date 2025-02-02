@@ -45,7 +45,7 @@ def run_crew_ai_task(inputs, user_id, run_id):
         print(f"Sending notification for run_id: {run_id}")
 
         # 비동기 함수 실행을 위해 asyncio.run 사용
-        asyncio.run(send_notification(user_id, f'CrewAI 작업이 완료되었습니다. 결과를 확인하세요! Run ID: {run_id}'))
+        asyncio.run(send_notification(user_id, f'AI 분석 서비스 작업이 완료되었습니다. 결과를 확인하세요! 보고서 ID: {run_id}'))
 
         return run_id  # 작업 성공 시, run_id 반환
 

@@ -150,41 +150,50 @@ const AiAgent = ({ isOpen, closeModal }) => {
         }
     }, [user]);
 
-    useEffect(() => {
-        if (user && user.id) {
-            socketRef.current = new WebSocket(
-                `ws://localhost:8000/ws/notify_${user.id}/`
-            );
+useEffect(() => {
+    if (user && user.id) {
+        socketRef.current = new WebSocket(
+            `ws://localhost:8000/ws/notify_${user.id}/`
+        );
 
-            socketRef.current.onmessage = (event) => {
-                const data = JSON.parse(event.data);
+        socketRef.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
 
-                const runIdMatch = data.message.match(/Run ID: (\d+)/);
-                if (runIdMatch) {
-                    const runIdFromMessage = runIdMatch[1];
-                    setRunId(runIdFromMessage);
-                    localStorage.setItem("run_id", runIdFromMessage);
-                }
+            const runIdMatch = data.message.match(/Run ID: (\d+)/);
+            if (runIdMatch) {
+                const runIdFromMessage = runIdMatch[1];
+                // WebSocket으로 받은 runId를 상태와 localStorage에 저장
+                setRunId(runIdFromMessage);
+                localStorage.setItem("run_id", runIdFromMessage);
+            }
 
-                if (data.message.includes("완료")) {
-                    setResultStatus("completed");
-                    fetchResult();
-                    fetchHistory();
-                } else if (data.message.includes("진행 중")) {
-                    setResultStatus("running");
-                }
-            };
-
-            socketRef.current.onclose = () => {
-                console.log("WebSocket 연결 종료");
-            };
-        }
-        return () => {
-            if (socketRef.current) {
-                socketRef.current.close();
+            if (data.message.includes("완료")) {
+                setResultStatus("completed");
+                fetchResult();
+                fetchHistory();
+            } else if (data.message.includes("진행 중")) {
+                setResultStatus("running");
             }
         };
-    }, [user]);
+
+        socketRef.current.onclose = () => {
+            console.log("WebSocket 연결 종료");
+        };
+    }
+
+    return () => {
+        if (socketRef.current) {
+            socketRef.current.close();
+        }
+    };
+}, [user]);
+
+useEffect(() => {
+    // runId가 변경될 때마다 localStorage 업데이트
+    if (runId) {
+        localStorage.setItem("run_id", runId);
+    }
+}, [runId]);
 
     useEffect(() => {
         const handleEscKey = (event) => {
