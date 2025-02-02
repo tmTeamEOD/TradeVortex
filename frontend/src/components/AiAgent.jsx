@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "../api/axiosInstance.js";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import Prism from "prismjs";
-import "prismjs/themes/prism.css";
-
-// 필요에 따라 추가 언어 로드
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-python";
 
 const LoadingWithMessages = ({ loading }) => {
     const loadingMessages = ["분석 중...", "연구 중...", "결과 정리 중..."];
@@ -48,75 +42,12 @@ const LoadingWithMessages = ({ loading }) => {
     );
 };
 
-// ReactMarkdown 커스텀 컴포넌트
-const MarkdownComponents = {
-    h1: ({ node, ...props }) => (
-        <h1 className="text-3xl font-bold my-4" {...props} />
-    ),
-    h2: ({ node, ...props }) => (
-        <h2 className="text-2xl font-semibold my-3" {...props} />
-    ),
-    h3: ({ node, ...props }) => (
-        <h3 className="text-xl font-medium my-2" {...props} />
-    ),
-    p: ({ node, ...props }) => (
-        <p className="my-2 text-gray-700 dark:text-gray-300" {...props} />
-    ),
-    ul: ({ node, ...props }) => (
-        <ul className="list-disc list-inside my-2" {...props} />
-    ),
-    ol: ({ node, ...props }) => (
-        <ol className="list-decimal list-inside my-2" {...props} />
-    ),
-    li: ({ node, ...props }) => <li className="my-1" {...props} />,
-    a: ({ node, href, children, ...props }) => (
-        <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline"
-            {...props}
-        >
-            {children}
-        </a>
-    ),
-    code: ({ node, inline, className, children, ...props }) => {
-        const match = /language-(\w+)/.exec(className || "");
-        return !inline && match ? (
-            <pre className="bg-gray-100 dark:bg-gray-800 p-2 rounded-md overflow-auto">
-                <code
-                    className={`language-${match[1]}`}
-                    dangerouslySetInnerHTML={{
-                        __html: Prism.highlight(
-                            String(children).replace(/\n$/, ""),
-                            Prism.languages[match[1]] || Prism.languages.markup,
-                            match[1]
-                        ),
-                    }}
-                />
-            </pre>
-        ) : (
-            <code
-                className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm"
-                {...props}
-            >
-                {children}
-            </code>
-        );
-    },
-    blockquote: ({ node, ...props }) => (
-        <blockquote
-            className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-4"
-            {...props}
-        />
-    ),
-    img: ({ node, ...props }) => (
-        <img className="my-4 max-w-full rounded-md" alt={props.alt} {...props} />
-    ),
-};
-
 const AiAgent = ({ isOpen, closeModal }) => {
+        const dispatch = useDispatch();
+
     const user = useSelector((state) => state.auth.user);
+        const isDarkMode = useSelector((state) => state.theme.isDarkMode);  // 다크모드 상태 가져오기
+
     const [userInput, setUserInput] = useState("");
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
@@ -279,7 +210,7 @@ useEffect(() => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 flex justify-center items-center z-40"
+                    className={`fixed inset-0 flex justify-center items-center z-40 ${isDarkMode ? "dark" : ""}`} // 다크모드 스타일 적용
                     onClick={handleClickOutside}
                     aria-modal="true"
                     role="dialog"
@@ -374,7 +305,7 @@ useEffect(() => {
                                             <h4 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">
                                                 ✨ AI 응답
                                             </h4>
-                                            <div className="flex-1 min-h-0 overflow-y-auto">
+                                            <div className="flex-1 min-h-0 overflow-y-auto ">
                                                 {loading ? (
                                                     <LoadingWithMessages loading={loading} />
                                                 ) : response ? (
@@ -382,17 +313,16 @@ useEffect(() => {
                                                         initial={{ opacity: 0 }}
                                                         animate={{ opacity: 1 }}
                                                         transition={{ duration: 0.5 }}
-                                                        className="prose dark:prose-dark flex-1 overflow-y-auto px-4"
+                                                        className="prose dark:prose-dark flex-1 overflow-y-auto px-4 dark:text-gray-300"
                                                     >
                                                         <ReactMarkdown
-                                                            components={MarkdownComponents}
                                                             children={response}
                                                             remarkPlugins={[remarkGfm]}
                                                             rehypePlugins={[rehypeRaw]}
                                                         />
                                                     </motion.div>
                                                 ) : (
-                                                    <div className="flex items-center justify-center h-full">
+                                                    <div className="flex items-center justify-center h-full ">
                                                         <p className="text-gray-600 dark:text-gray-300 text-center">
                                                             응답이 여기에 표시됩니다.
                                                         </p>
