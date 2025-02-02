@@ -133,6 +133,8 @@ CORS_ALLOW_HEADERS = [
     "accept",
     "accept-encoding",
     "origin",
+    'user_id',  # 'user_id' 헤더 추가
+
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGINS = [
