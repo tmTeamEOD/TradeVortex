@@ -43,6 +43,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # Application definition
 INSTALLED_APPS = [
+    'calender',
     'channels',
     'graphs',
     'realtimechat',

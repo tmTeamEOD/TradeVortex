@@ -14,7 +14,7 @@ import DetailChart from "./pages/DetailChart.jsx";
 import EmailActivate from "./pages/EmailActivate.jsx";
 import Toron from "./pages/Toron.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
-import Schedule from "./pages/Schedule.jsx";
+import EventCalendar from "./pages/Calender.jsx";
 import Notifications from "./components/Notifications.jsx";
 import store from "./redux/store";  // Redux 스토어
 import NotificationHandler from "./components/NotificationHandler";
@@ -76,7 +76,7 @@ const AppContent = () => {
                 )}
 
                 {/* /home 이 아닐 때만 마진을 적용 */}
-                <div className={`flex-grow ${isHomePage ? "" : "mt-[60px]"}`}>
+                <div className={`flex-grow ${isHomePage ? "" : "mt-[60px] ml-28 lg:ml-56"}`}>
                     <Routes location={location} key={location.pathname}>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/main" element={<Main/>}/>
@@ -85,7 +85,7 @@ const AppContent = () => {
                         <Route path="/news" element={<News/>}/>
                         <Route path="/discussion" element={<Toron/>}/>
                         <Route path="/portfolio" element={<Portfolio/>}/>
-                        <Route path="/schedule" element={<Schedule/>}/>
+                        <Route path="/schedule" element={<EventCalendar/>}/>
                         <Route path="/boards/:boardId" element={<BoardPosts/>}/>
                         <Route path="/charts" element={<Charts/>}/>
                         <Route path="/charts/:symbol" element={<DetailChart/>}/>

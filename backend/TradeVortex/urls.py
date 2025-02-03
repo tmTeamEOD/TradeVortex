@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/aiassist/', include('aiassist.urls')),  # aiassist 앱의 URL 포함
     path('api/board/', include('board.urls')),
     path('api/fetch/', include('graphs.urls')),
-
+    path('api/calender/', include('calender.urls')),
 ]
 
 from django.conf import settings

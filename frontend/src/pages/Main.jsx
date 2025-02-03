@@ -46,7 +46,7 @@ const Main = () => {
 
             <Suspense fallback={<div>Loading...</div>}>
                 {/* 뉴스 슬라이드 영역 */}
-                <div className="ml-28 lg:ml-56 bg-gray-950 text-white shadow-md mx-4">
+                <div className=" bg-gray-950 text-white shadow-md mx-4">
                     <Swiper
                         spaceBetween={30}
                         centeredSlides={true}
@@ -85,7 +85,7 @@ const Main = () => {
                 </div>
 
                 <div className="relative flex">
-                    <main className="flex-grow p-3 ml-28 lg:ml-56">
+                    <main className="flex-grow p-3 ">
                         {/* 3x2 네비게이션 섹션 */}
                         <section className="grid grid-cols-1 md:grid-cols-3 gap-2">
                             {[
