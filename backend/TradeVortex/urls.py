@@ -16,7 +16,7 @@ urlpatterns = [
     path('api/board/', include('board.urls')),
     path('api/fetch/', include('graphs.urls')),
     path('api/calender/', include('calender.urls')),
-    path('api/toron/', include('toron.urls', namespace="toron")),
+    path('api/newspage/', include('newspage.urls')),
 ]
 
 from django.conf import settings
