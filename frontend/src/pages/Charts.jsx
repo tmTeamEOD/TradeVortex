@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = lazy(() => import("../components/Sidebar.jsx"));
+// const Sidebar = lazy(() => import("../components/Sidebar.jsx"));
 const DetailChart = lazy(() => import("./DetailChart.jsx")); // DetailChart 임포트
 
 const Charts = () => {
@@ -15,12 +15,12 @@ const Charts = () => {
 
     return (
         <div className={containerClass}>
-            <Suspense fallback={<div className="flex justify-center items-center h-screen">로딩 중...</div>}>
+                            <Suspense fallback={<div className="flex justify-center items-center h-screen">로딩 중...</div>}>
                 <div className="relative flex">
                     {/* Sidebar */}
-                    <div className="fixed h-full w-16 lg:w-56">
-                        <Sidebar isDarkMode={isDarkMode} />
-                    </div>
+                    {/*<div className="fixed h-full w-16 lg:w-56">*/}
+                    {/*    <Sidebar isDarkMode={isDarkMode} />*/}
+                    {/*</div>*/}
 
                     {/* Main content */}
                     <main className="flex-grow ml-16 lg:ml-56">
