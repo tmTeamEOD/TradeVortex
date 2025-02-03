@@ -28,9 +28,7 @@ const Sidebar = () => {
       { label: "주요 이벤트", path: "/news/events" },
     ] },
     { icon: "fas fa-comments", label: "토론", path: "/discussions", submenu: [
-      { label: "인기 게시글", path: "/discussions/popular" },
-      { label: "내 참여 토론", path: "/discussions/myposts" },
-      { label: "새로운 토론", path: "/discussions/new" },
+      { label: "진행중인 토론", path: "/discussion" },
     ] },
     { icon: "fas fa-cogs", label: "설정", path: "/settings", submenu: [
       { label: "계정 관리", path: "/settings/account" },
