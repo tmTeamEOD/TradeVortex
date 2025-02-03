@@ -1,5 +1,3 @@
-# board/serializers.py
-
 from rest_framework import serializers
 from .models import BoardType, Post, Image, Comment, Tag, Report
 from django.contrib.auth.models import User
@@ -32,7 +30,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)  # 작성자 이름 표시
-    images = ImageSerializer(many=True, read_only=True)
+    images = ImageSerializer(many=True, required=False)
     comments = CommentSerializer(many=True, read_only=True)
     tags = TagSerializer(many=True, read_only=True)
     board_type = serializers.PrimaryKeyRelatedField(queryset=BoardType.objects.all())
@@ -44,6 +42,15 @@ class PostSerializer(serializers.ModelSerializer):
             'view_count', 'like_count', 'created_at', 'updated_at',
             'images', 'comments', 'tags'
         ]
+
+    def create(self, validated_data):
+        images_data = self.context['request'].FILES.getlist('images')  # 여러 이미지 처리
+        post = Post.objects.create(**validated_data)  # 게시물 생성
+
+        for image_data in images_data:
+            Image.objects.create(post=post, image=image_data)  # 이미지 저장
+
+        return post
 
 
 class ReportSerializer(serializers.ModelSerializer):

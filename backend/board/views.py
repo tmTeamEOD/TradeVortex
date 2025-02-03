@@ -82,7 +82,16 @@ class ImageViewSet(viewsets.ModelViewSet):
     parser_classes = [MultiPartParser, FormParser]
 
     def perform_create(self, serializer):
-        serializer.save()
+        post_id = self.request.data.get("post")  # 요청 데이터에서 post ID 가져오기
+        if not post_id:
+            raise serializers.ValidationError({"post": "게시물 ID가 필요합니다."})
+
+        try:
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            raise serializers.ValidationError({"post": "해당 게시물을 찾을 수 없습니다."})
+
+        serializer.save(post=post)
 
 
 class CommentViewSet(viewsets.ModelViewSet):
