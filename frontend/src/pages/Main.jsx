@@ -59,7 +59,7 @@ const Main = () => {
                         pagination={{ clickable: true }}
                         navigation={true}
                         modules={[Autoplay, Pagination, Navigation]}
-                        className="mySwiper h-[20vh]"
+                        className="mySwiper h-[25vh]"
                     >
                         {boardData.length > 0 ? (
                             boardData.map((post) => (
