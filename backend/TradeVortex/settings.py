@@ -43,6 +43,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # Application definition
 INSTALLED_APPS = [
+    'newspage',
+    'toron',
     'calender',
     'channels',
     'graphs',
@@ -110,6 +112,7 @@ CSRF_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = False  # CSRF 토큰을 JavaScript에서 접근 가능하게
 CSRF_TRUSTED_ORIGINS = [
+    "http://0.0.0.0:3000",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]

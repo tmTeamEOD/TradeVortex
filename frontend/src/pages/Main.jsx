@@ -67,7 +67,7 @@ const Main = () => {
                                     key={post.id}
                                     className="relative flex items-center justify-center h-[400px] pl-4"
                                     onClick={() => navigate(`/post/${post.id}`)}
-                                >
+                                  >
                                     <div className="relative w-full h-full">
                                         <img
                                             src={post.images?.length > 0 ? post.images[0].image : "/media/profile_pictures/default.jpg"}
