@@ -1,77 +1,119 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-import requests
-import time  # 지연을 추가하기 위해 time 모듈을 임포트
-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-
-from urllib.request import urlretrieve
-
 import os
-import pandas as pd
+import asyncio
+import json
+import uuid
+import requests
+from django.conf import settings
+from django.http import JsonResponse
+from rest_framework.views import APIView
+from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
-def newspage():
-    options = webdriver.ChromeOptions()
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
-    options.add_argument("disable-blink-features=AutomationControlled")
-    # options.add_argument("--headless")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option("useAutomationExtension", False)
+# 환경 변수에서 API 키 불러오기
+API_KEY = os.getenv("GEMINI_API_KEY")
 
-    driver = webdriver.Chrome(options=options)
+# 미디어 폴더 경로 설정
+MEDIA_ROOT = os.path.join(settings.MEDIA_ROOT, "news_images")
+if not os.path.exists(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
 
-    url = "https://www.bigkinds.or.kr/v2/news/recentNews.do"
-    driver.get(url)
-    driver.maximize_window()
+class NewsItem:
+    def __init__(self, title: str, content: str, image: str, url: str):
+        self.title = title
+        self.content = content
+        self.image = self.download_image(image) if image else None
+        self.url = url
 
-    next_button_sel = "a.page-next.page-link"
-    result_list = []
+    def to_dict(self):
+        return {
+            "title": self.title,
+            "content": self.content,
+            "image": self.image,
+            "url": self.url,
+        }
 
-    for i in range(1):
-        print(f"페이지 : {i + 1}")
+    def download_image(self, image_url):
+        """이미지를 다운로드하여 로컬 저장 후 파일 경로 반환"""
+        try:
+            response = requests.get(image_url, stream=True, timeout=5)
+            if response.status_code == 200:
+                file_ext = image_url.split(".")[-1].split("?")[0]
+                file_name = f"{uuid.uuid4()}.{file_ext}"
+                file_path = os.path.join(MEDIA_ROOT, file_name)
 
-        title_sel = "strong.title"
-        newsTitles = driver.find_elements(By.CSS_SELECTOR, title_sel)
+                with open(file_path, "wb") as img_file:
+                    for chunk in response.iter_content(1024):
+                        img_file.write(chunk)
 
-        driver.execute_script("""
-        document.querySelectorAll('div.news-status, .ai-link-right-wrap.logout, button.setup_bt, button.btn-top.active, #header, #footer').forEach(element => {
-            element.remove();
-        });
-        """)
-        time.sleep(1)
+                return f"/media/news_images/{file_name}"
+        except Exception as e:
+            print(f"이미지 다운로드 오류: {e}")
+        return None
 
-        for n, news in enumerate(newsTitles, start=1):
+class CrawlNewsView(APIView):
+    def get(self, request):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        result = loop.run_until_complete(self.fetch_news())
+        return JsonResponse({"news": result}, safe=False)
 
-            news.click()
-            time.sleep(5)
+    async def fetch_news(self):
+        llm_strategy = LLMExtractionStrategy(
+            provider="gemini/gemini-1.5-flash",
+            api_token=API_KEY,
+            schema=json.dumps({
+                "title": "string",
+                "content": "string",
+                "image": "string",
+                "url": "string"
+            }),
+            extraction_type="schema",
+            instruction="뉴스 페이지에서 제목, 내용, 이미지 및 원본 링크를 추출하세요.",
+            chunk_token_threshold=1000,
+            overlap_rate=0.0,
+            apply_chunking=True,
+            input_format="html",
+            extra_args={"temperature": 0.0, "max_tokens": 800}
+        )
 
-            title_sel = "h1.title"
-            body_sel = "div.news-view-body"
-            image_sel = "#newsImage"
+        crawl_config = CrawlerRunConfig(
+            extraction_strategy=llm_strategy,
+            cache_mode=CacheMode.BYPASS,
+        )
 
-            try:
+        browser_cfg = BrowserConfig(headless=True)
 
-                title = driver.find_element(By.CSS_SELECTOR, title_sel).text
-                content = driver.find_element(By.CSS_SELECTOR, body_sel).text
+        async with AsyncWebCrawler(config=browser_cfg) as crawler:
+            result = await crawler.arun(
+                url="https://news.naver.com/section/101/",  # 예제 뉴스 페이지
+                config=crawl_config
+            )
 
+            if result.success:
                 try:
-                    image = driver.find_element(By.CSS_SELECTOR, image_sel).get_attribute("src")
-                except:
-                    image = ""
+                    if result.extracted_content:
+                        data = json.loads(result.extracted_content)
+                        if isinstance(data, list):
+                            news_items = [
+                                NewsItem(
+                                    title=item.get("title", "No Title"),
+                                    content=item.get("content", "No Content"),
+                                    image=item.get("image"),
+                                    url=item.get("url", "No URL")
+                                ).to_dict() for item in data
+                            ]
+                        else:
+                            news_items = [NewsItem(
+                                title=data.get("title", "No Title"),
+                                content=data.get("content", "No Content"),
+                                image=data.get("image"),
+                                url=data.get("url", "No URL")
+                            ).to_dict()]
 
-                result_list.append([title, content, image])
-
-            except:
-                pass
-
-            driver.switch_to.active_element.find_element(By.CSS_SELECTOR, "button.modal-close").click()
-            time.sleep(1)
-
-        driver.switch_to.default_content()
-        driver.find_element(By.CSS_SELECTOR, next_button_sel).click()
-        time.sleep(4)
-
-    print(result_list)
+                        return news_items
+                    else:
+                        return [{"error": "Extracted content was empty."}]
+                except json.JSONDecodeError:
+                    return [{"error": "Invalid JSON format."}]
+            else:
+                return [{"error": result.error_message}]
