@@ -13,13 +13,13 @@ export default defineConfig({
     open: true, // 서버 시작 시 브라우저 자동 열기
     proxy: {
       '/api': {
-        target: 'http://192.168.0.6:8000', // 백엔드 API 서버 주소
+        target: 'http://127.0.0.1:8000', // 백엔드 API 서버 주소
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''), // '/api' 경로 제거
       },
             '/ws': {
-        target: 'ws://192.168.0.6:8000',
+        target: 'ws://127.0.0.1:8000',
         ws: true,
         changeOrigin: true,
       },

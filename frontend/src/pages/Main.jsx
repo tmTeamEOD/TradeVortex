@@ -28,7 +28,7 @@ const Main = () => {
         // 뉴스 데이터를 API에서 가져오는 함수
         const fetchNewsData = async () => {
             try {
-                const response = await axios.get("http://192.168.0.6:8000/api/news/");
+                const response = await axios.get("http://127.0.0.1:8000/api/news/");
                 setNewsData(response.data.results); // 뉴스 데이터를 받아와 상태 업데이트
             } catch (error) {
                 console.error("뉴스 데이터를 가져오는 데 실패했습니다.", error);
@@ -38,7 +38,7 @@ const Main = () => {
         // 게시판 데이터를 가져오는 함수
         const fetchBoardType = async () => {
             try {
-                const response = await axios.get("http://192.168.0.6:8000/api/board/posts/?board_type=1&ordering=-created_at&limit=5");
+                const response = await axios.get("http://127.0.0.1:8000/api/board/posts/?board_type=1&ordering=-created_at&limit=5");
                 setBoardData(response.data);
             } catch {
                 console.error("Unexpected API response format:", response.data);
@@ -83,7 +83,7 @@ const Main = () => {
                                 >
                                     <div className="relative w-full h-full">
 <img
-    src={newsItem.image ? `http://192.168.0.6:8000${newsItem.image}` : "/media/default_news_image.jpg"}
+    src={newsItem.image ? `http://127.0.0.1:8000${newsItem.image}` : "/media/default_news_image.jpg"}
     alt={newsItem.title}
     className="object-cover w-full h-full"
 />

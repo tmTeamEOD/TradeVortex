@@ -13,9 +13,9 @@ import DigitalClock from "./DigitalClock.jsx";
 import TimezoneSelect from "react-timezone-select";
 import axios from "axios";
 
-const API_BASE_URL = "http://192.168.0.6:8000/api";
+const API_BASE_URL = "http://127.0.0.1:8000/api";
 // 백엔드의 도메인 (media 파일은 이 도메인을 사용)
-const BACKEND_DOMAIN = "http:/192.168.0.6:8000";
+const BACKEND_DOMAIN = "http:/127.0.0.1:8000";
 
 // 상대 경로 URL을 절대 경로로 변환하는 헬퍼 함수
 const getAbsoluteUrl = (url) => {

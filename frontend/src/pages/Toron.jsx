@@ -14,7 +14,7 @@ const Toron = () => {
     const [votes, setVotes] = useState({});
 
     useEffect(() => {
-        axios.get("http://192.168.0.6:8000/api/toron/categories/")
+        axios.get("http://127.0.0.1:8000/api/toron/categories/")
             .then((response) => {
                 setCategories(response.data);
                 fetchVoteSummary();
@@ -23,7 +23,7 @@ const Toron = () => {
     }, []);
 
     const fetchVoteSummary = () => {
-        axios.get("http://192.168.0.6:8000/api/toron/votes/summary/")
+        axios.get("http://127.0.0.1:8000/api/toron/votes/summary/")
             .then((response) => {
                 const voteData = response.data.reduce((acc, item) => {
                     acc[item.category_name] = {
@@ -45,7 +45,7 @@ const Toron = () => {
         const opinion = prompt("한마디를 입력해주세요!");
         if (!opinion) return;
 
-        axios.post("http://192.168.0.6:8000/api/toron/votes/", {
+        axios.post("http://127.0.0.1:8000/api/toron/votes/", {
             category: category.id,
             vote_type: type,
             opinion: opinion

@@ -18,7 +18,7 @@ const CoinStatus = ({ coinSymbol }) => {
   // -----------------------------
   useEffect(() => {
     // Django 서버의 WebSocket URL을 지정 (포트 8000 가정)
-    const socketUrl = `ws://192.168.0.6:8000/ws/upbit/${coinSymbol}/`;
+    const socketUrl = `ws://127.0.0.1:8000/ws/upbit/${coinSymbol}/`;
     const socket = new WebSocket(socketUrl);
 
     socket.onopen = () => {

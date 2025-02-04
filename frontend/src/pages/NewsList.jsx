@@ -23,7 +23,7 @@ const NewsList = ({ newsList }) => {
                     >
                         <img
                           src={
-                            !imageUrl || imageUrl === "http://192.168.0.6:8000null" || imageUrl === ""
+                            !imageUrl || imageUrl === "http://127.0.0.1:8000null" || imageUrl === ""
                               ? defaultImage
                               : imageUrl
                           }

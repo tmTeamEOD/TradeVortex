@@ -51,7 +51,7 @@ const ChatApp = memo(({closeModal}) => {
 
     useEffect(() => {
         if (chatMode === "realtime" && !socketRef.current) {
-            socketRef.current = new WebSocket("ws://192.168.0.6:8000/ws/realtimechat/");
+            socketRef.current = new WebSocket("ws://127.0.0.1:8000/ws/realtimechat/");
             socketRef.current.onopen = () => {
                 setIsConnected(true);
             };
@@ -99,7 +99,7 @@ const ChatApp = memo(({closeModal}) => {
             setLoading(true);
 
             try {
-                const response = await axios.post("http://192.168.0.6:8000/api/aiassist/bot/", {
+                const response = await axios.post("http://127.0.0.1:8000/api/aiassist/bot/", {
                     inputs: {question: userInput},
                 });
 

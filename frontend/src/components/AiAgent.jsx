@@ -154,7 +154,7 @@ useEffect(() => {
         setLoading(true);
         try {
             const result = await axios.post(
-                "http://192.168.0.6:8000/api/aiassist/run/",
+                "http://127.0.0.1:8000/api/aiassist/run/",
                 { inputs: { topic: userInput } },
                 {
                     headers: {

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 기본 axios 인스턴스 생성
 const axiosInstance = axios.create({
-  baseURL: "http://192.168.0.6:8000/api/",  // 백엔드 URL
+  baseURL: "http://127.0.0.1:8000/api/",  // 백엔드 URL
   timeout: 5000,  // 5초 타임아웃 설정
   headers: {
     "Content-Type": "application/json",
@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use(
       if (refreshToken) {
         try {
           // 리프레시 토큰을 사용하여 새로운 액세스 토큰 요청
-          const refreshResponse = await axios.post("http://192.168.0.6:8000/api/accounts/refresh-token/", {
+          const refreshResponse = await axios.post("http://127.0.0.1:8000/api/accounts/refresh-token/", {
             refresh_token: refreshToken,  // 리프레시 토큰
           });
 

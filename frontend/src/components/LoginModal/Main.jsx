@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SOCIAL_LOGIN_PROVIDERS } from "./socialLoginProviders.jsx";
 import { motion } from "framer-motion";
 
-const BACKEND_URL = "http://192.168.0.6:8000";
+const BACKEND_URL = "http://127.0.0.1:8000";
 const GOOGLE_CLIENT_ID =
   "984280779923-a9lns1v2lqa2uk516q0r2eh0p1eivkgj.apps.googleusercontent.com";
 const KAKAO_JAVASCRIPT_KEY = "5f0118791b31473828c288fdf0bbe9a0";
