@@ -22,7 +22,15 @@ const Home = () => {
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 1.5}}
                     >
-                        TradeVortex
+                        <div className="relative w-[300px] h-[300px] ">
+                                                        {/*<img src="bg.jpg" alt="React Logo" className="w-[300px] h-[200px] ml-[200px] mb-[300px]"/>*/}
+
+                            <img src="icons/TV.svg" alt="React Logo" className="w-[300px] h-[200px] ml-[200px] mb-[300px]"/>
+                            <span
+                                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold ">
+    TradeVortex
+  </span>
+                        </div>
                     </motion.h1>
                     <motion.p
                         className="text-xl md:text-2xl font-semibold"
