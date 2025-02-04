@@ -88,7 +88,7 @@ const Main = () => {
                                             className="object-cover w-full h-full"
                                         />
                                         <div
-                                            className="absolute inset-0 bg-[linear-gradient(to_right,_#000000_30%,_transparent)]"></div>
+                                            className="absolute inset-0 bg-[linear-gradient(to_right,_#000000_5%,_transparent)]"></div>
                                     </div>
                                     <div className="absolute bottom-4 left-4 z-20 text-left p-4">
                                         <h1 className="text-2xl font-semibold mb-2">{newsItem.title}</h1>
