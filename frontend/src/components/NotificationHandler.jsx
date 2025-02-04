@@ -9,7 +9,7 @@ const NotificationHandler = ({ userId }) => {
   useEffect(() => {
     if (!userId) return;
 
-    const socket = new WebSocket(`ws://localhost:8000/ws/notify_${userId}/`);
+    const socket = new WebSocket(`ws://192.168.0.6:8000/ws/notify_${userId}/`);
 
     socket.onopen = () => {
       console.log("WebSocket 연결됨");

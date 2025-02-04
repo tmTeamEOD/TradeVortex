@@ -39,7 +39,7 @@ services:
       python manage.py makemigrations &&
       python manage.py migrate &&
       python manage.py collectstatic --noinput &&
-      uvicorn TradeVortex.asgi:application --host 0.0.0.0 --port 8000 --reload
+      gunicorn -k uvicorn.workers.UvicornWorker TradeVortex.asgi:application --bind 0.0.0.0:8000 --workers 4 --reload
       "
 
   redis:
@@ -72,7 +72,6 @@ services:
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
     volumes:
       - ./backend:/app
-    # 추가적으로 대기 로직을 넣을 수 있습니다
 
   pgadmin:
     image: dpage/pgadmin4
@@ -81,10 +80,22 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "5050:80"
+      - "5050:5050"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - ./servers.json:/pgadmin4/servers.json
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/build:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    depends_on:
+      - react
+      - django
 
 volumes:
   redis_volume_data:

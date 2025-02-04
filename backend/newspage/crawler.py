@@ -1,6 +1,6 @@
 import os
-import json
 import uuid
+import json
 import logging
 import requests
 import asyncio
@@ -11,7 +11,6 @@ from functools import wraps
 import random
 
 from django.conf import settings
-
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
@@ -22,9 +21,8 @@ logger.setLevel(logging.DEBUG)
 # 환경 변수에서 API 키 불러오기
 API_KEY = os.getenv("GEMINI_API_KEY")
 
-# 후보 뉴스 사이트 (향후 RSS 피드, 업데이트 빈도, 방문자수 등으로 동적 선정 가능)
+# 후보 뉴스 사이트 목록
 CANDIDATE_SITES = [
-    # 금융 뉴스 사이트
     "https://finance.yahoo.com/",
     "https://www.bloomberg.com/markets",
     "https://www.reuters.com/finance",
@@ -45,47 +43,20 @@ CANDIDATE_SITES = [
     "https://www.reuters.com/business",
     "https://www.nikkei.com/markets/",
     "https://www.cnbc.com/world/",
-
-    # 가상화폐 관련 사이트
-    # "https://cointelegraph.com/",
-    # "https://www.coindesk.com/",
-    # "https://cryptobriefing.com/",
-    # "https://www.bitcoinist.com/",
-    # "https://www.theblock.co/",
-    # "https://decrypt.co/",
-    # "https://www.cryptonews.com/",
-    # "https://www.newsbtc.com/",
-    # "https://www.ccn.com/",
-    # "https://www.bitcoinmagazine.com/",
-    #
-    # # 한국 포털 뉴스 (경제)
-    # "https://finance.naver.com/",
-    # "https://news.daum.net/economy",
-    # "https://www.hankyung.com/economy",
-    # "https://www.mk.co.kr/news/economy/",
-    # "https://www.sedaily.com/NewsView/1Z61BBE01M",
-    # "https://www.chosun.com/economy/",
-    # "https://www.yonhapnews.co.kr/economy/",
-    # "https://www.khan.co.kr/economy/",
-    # "https://www.ajunews.com/view/20230207094450732",
-    # "https://www.mbn.co.kr/news/economy/"
 ]
 
-# 미디어 폴더 경로 설정 (Django settings.MEDIA_ROOT가 설정되어 있어야 함)
+# 미디어 폴더 경로 설정
 MEDIA_ROOT = os.path.join(settings.MEDIA_ROOT, "news_images")
 os.makedirs(MEDIA_ROOT, exist_ok=True)
 
-# 캐시된 이미지 다운로드 경로 (이미 다운로드한 이미지 중복 다운로드 방지)
+# 캐시된 이미지 다운로드 경로
 image_cache = {}
 
-# User-Agent 리스트 (임의로 여러 값을 사용하여 사이트 차단 우회)
+# User-Agent 리스트
 USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)"
-    " Chrome/90.0.4430.93 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
-    " Version/14.0.3 Safari/605.1.15",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)"
-    " Chrome/88.0.4324.182 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36",
 ]
 
 def get_random_headers():
@@ -175,7 +146,7 @@ async def extract_image_from_page(page_url):
         }),
         extraction_type="schema",
         instruction=f"""
-        해당 뉴스 기사 페이지 ({page_url})에서 대표 이미지 URL을 한 장 추출해주세요.
+        해당 뉴스 기사 페이지 ({page_url})에서 뉴스 기사와 관련된 이미지 URL을 한 장 추출해주세요.
         추출된 URL은 저장 가능한 고화질 이미지 URL이어야 하며, 한글 뉴스 기사에 적합해야 합니다.
         """,
         chunk_token_threshold=1000,
@@ -204,7 +175,7 @@ async def extract_image_from_page(page_url):
         return result.extracted_content.strip() if result.extracted_content else None
 
 @retry_on_failure(retries=3, delay=2)
-async def download_image(image_url):
+async def download_image(image_url, site_name="default"):
     """
     이미지 URL로부터 이미지를 다운로드한 후, 로컬 저장소에 저장하고 경로를 반환합니다.
     """
@@ -225,9 +196,10 @@ async def download_image(image_url):
             img = img.convert("RGB")
             file_ext = os.path.splitext(image_url.split("?")[0])[1] or ".jpg"
             file_name = f"{uuid.uuid4()}{file_ext}"
-            file_path = os.path.join(MEDIA_ROOT, file_name)
+            file_path = os.path.join(MEDIA_ROOT, site_name, file_name)
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
             img.save(file_path, quality=95)
-            local_path = f"/media/news_images/{file_name}"
+            local_path = f"/media/news_images/{site_name}/{file_name}"
             image_cache[image_url] = local_path
             logger.debug(f"이미지 다운로드 완료: {file_path}")
             return local_path
@@ -237,13 +209,13 @@ async def download_image(image_url):
         logger.error(f"이미지 다운로드 오류: {e}")
     return None
 
+# 뉴스 크롤링 함수
 @retry_on_failure(retries=3, delay=2)
 async def fetch_news(page_url):
     """
-    주어진 뉴스 사이트 페이지에서 뉴스 기사 제목, 내용, URL, 금융 투자자산 태그를 Gemini API를 통해 추출합니다.
-    반드시 한글 결과가 나오도록 instruction에 명시합니다.
-    추가로 이미지 추출 후 다운로드까지 진행합니다.
+    주어진 뉴스 사이트 페이지에서 뉴스 기사 제목, 내용, URL, 금융 투자자산 태그를 추출하고 이미지를 다운로드합니다.
     """
+    site_name = urlparse(page_url).netloc
     llm_strategy = LLMExtractionStrategy(
         provider="gemini/gemini-2.0-flash-exp",
         api_token=API_KEY,
@@ -251,7 +223,7 @@ async def fetch_news(page_url):
             "title": "string",
             "content": "string",
             "url": "string",
-            "asset": "string"  # 기사 내 금융 투자자산 관련 태그 (예: 주식, 채권, 부동산 등)
+            "asset": "string"
         }),
         extraction_type="schema",
         instruction=f"""
@@ -292,11 +264,9 @@ async def fetch_news(page_url):
                 content = item.get("content")
                 url = item.get("url")
                 asset = item.get("asset")
-                # 동일 페이지 URL이면 건너뛰기
                 if url == page_url:
                     logger.debug(f"크롤링 대상 페이지 URL 제외: {url}")
                     continue
-                # URL 유효성 체크
                 if not url or not is_valid_url(url):
                     logger.error(f"유효하지 않은 URL: {url}")
                     continue
@@ -308,7 +278,6 @@ async def fetch_news(page_url):
                     image_url = None
                     try:
                         parsed = json.loads(image_extracted)
-                        # Gemini API 결과가 리스트 또는 dict 모두 대응
                         if isinstance(parsed, list):
                             image_url = parsed[0].get("image") if parsed and isinstance(parsed[0], dict) else None
                         elif isinstance(parsed, dict):
@@ -317,7 +286,7 @@ async def fetch_news(page_url):
                         logger.error(f"이미지 URL 파싱 오류: {e}")
 
                     if image_url and (image_url.startswith("http") or image_url.startswith("https")):
-                        local_image_path = await download_image(image_url)
+                        local_image_path = await download_image(image_url, site_name)
                     else:
                         logger.error(f"유효하지 않은 이미지 URL: {image_url}")
 
@@ -333,13 +302,10 @@ async def fetch_news(page_url):
             logger.error(f"크롤링 결과 JSON 파싱 오류: {e}")
             return None
 
+# 자동으로 선정된 뉴스 사이트에서 뉴스 크롤링
 async def fetch_all_news():
-    """
-    자동 선정된 모든 후보 사이트에서 동시에 뉴스를 크롤링합니다.
-    """
     selected_sources = await auto_select_sources()
     logger.info(f"선정된 사이트: {selected_sources}")
-    # 동시 요청을 피하기 위해 순차적으로 처리하도록 변경
     articles = []
     for url in selected_sources:
         try:
@@ -360,7 +326,6 @@ if __name__ == "__main__":
         articles = await fetch_all_news()
         if articles:
             logger.info(f"총 기사 수: {len(articles)}")
-            # 결과 출력 혹은 저장
             print(json.dumps(articles, ensure_ascii=False, indent=2))
         else:
             logger.warning("크롤링된 기사가 없습니다.")

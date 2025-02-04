@@ -4,13 +4,12 @@ import {AnimatePresence, motion} from "framer-motion";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import {v4 as uuidv4} from 'uuid';  // uuid 라이브러리 추가
+import {v4 as uuidv4} from 'uuid';
 
 const ChatApp = memo(({closeModal}) => {
-    const {user} = useSelector((state) => state.auth);  // 로그인한 사용자 정보 가져오기
+    const {user} = useSelector((state) => state.auth);
     const isDarkMode = useSelector((state) => state.theme.isDarkMode);
 
-    // 절망적이고 웃긴 금융 네임스페이스 목록
     const namespaces = [
         '빚갚기작전', '주식폭망', '빚투자', '내월급', '재테크실패', '부자될까?', '재정난',
         '펀드환불', '주식시장이벤트', '세금폭탄', '급여이체실패', '투자한방에', '잔액부족',
@@ -18,48 +17,49 @@ const ChatApp = memo(({closeModal}) => {
         '빚갚기5년계획', '영끌할때', '손해보는투자', '기대했던수익', '연금조정실패', '종잣돈없음'
     ];
 
-    // 로그인 여부에 따른 clientId 설정 (절망적이고 웃긴 네임스페이스 사용)
     const [clientId, setClientId] = useState(() => {
         if (user) {
-            return user.username;  // 로그인된 사용자는 username 사용
+            return user.username;
         } else {
             const randomNamespace = namespaces[Math.floor(Math.random() * namespaces.length)];
-            const randomNumber = Math.floor(Math.random() * 1000);  // 3자리 숫자 추가
+            const randomNumber = Math.floor(Math.random() * 1000);
             return `@${randomNamespace}-${randomNumber}`;
         }
     });
 
-    const [botMessages, setBotMessages] = useState([  // 챗봇 메시지 상태
+    const [botMessages, setBotMessages] = useState([
         {
-            id: uuidv4(),  // id는 uuid로 생성
+            id: uuidv4(),
             sender: "챗봇",
             text: "안녕하세요! 무엇이든 물어보세요 😊",
             time: new Date().toLocaleTimeString(),
         },
     ]);
-    const [realtimeMessages, setRealtimeMessages] = useState([]);  // 실시간 채팅 메시지 상태
+    const [realtimeMessages, setRealtimeMessages] = useState([]);
     const [userInput, setUserInput] = useState("");
-    const [loading, setLoading] = useState(false); // 챗봇 응답 대기 상태
-    const [chatMode, setChatMode] = useState("bot");  // 챗봇 모드 또는 실시간 채팅 모드
+    const [loading, setLoading] = useState(false);
+    const [chatMode, setChatMode] = useState("bot");
     const [isConnected, setIsConnected] = useState(false);
     const socketRef = useRef(null);
 
     const messagesEndRef = useRef(null);
 
+    // 스크롤 자동 내리기
     useEffect(() => {
-        // WebSocket 연결 설정: 실시간 채팅 모드일 때 WebSocket 연결
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [botMessages, realtimeMessages]);  // 메시지가 추가될 때마다 스크롤을 내림
+
+    useEffect(() => {
         if (chatMode === "realtime" && !socketRef.current) {
-            socketRef.current = new WebSocket("ws://localhost:8000/ws/realtimechat/");
+            socketRef.current = new WebSocket("ws://192.168.0.6:8000/ws/realtimechat/");
             socketRef.current.onopen = () => {
                 setIsConnected(true);
             };
 
             socketRef.current.onmessage = (event) => {
                 const data = JSON.parse(event.data);
-                // 로그인된 사용자는 user.username, 아니면 clientId 사용
                 const sender = user ? user.username : clientId;
 
-                // 자기 자신이 보낸 메시지는 무시하도록 필터링
                 if (data.sender !== sender) {
                     setRealtimeMessages((prev) => [
                         ...prev,
@@ -81,14 +81,14 @@ const ChatApp = memo(({closeModal}) => {
                 console.error("WebSocket error:", error);
             };
         }
-    }, [chatMode, clientId]);  // clientId와 chatMode가 변경될 때마다 WebSocket 설정
+    }, [chatMode, clientId]);
 
     const sendMessage = async () => {
         if (!userInput.trim()) return;
 
         const newMessage = {
-            id: uuidv4(),  // id는 uuid로 생성
-            sender: user ? user.username : clientId,  // 로그인된 사용자라면 user.username, 아니면 clientId
+            id: uuidv4(),
+            sender: user ? user.username : clientId,
             text: userInput,
             time: new Date().toLocaleTimeString(),
         };
@@ -99,7 +99,7 @@ const ChatApp = memo(({closeModal}) => {
             setLoading(true);
 
             try {
-                const response = await axios.post("http://127.0.0.1:8000/api/aiassist/bot/", {
+                const response = await axios.post("http://192.168.0.6:8000/api/aiassist/bot/", {
                     inputs: {question: userInput},
                 });
 
@@ -131,9 +131,8 @@ const ChatApp = memo(({closeModal}) => {
             }
         } else if (chatMode === "realtime" && isConnected) {
             setRealtimeMessages((prev) => [...prev, newMessage]);
-            socketRef.current.send(JSON.stringify(newMessage));  // 실시간 채팅 WebSocket을 통해 메시지 전송
-            setUserInput("");  // 실시간 채팅도 보내고 나서 입력값 초기화
-
+            socketRef.current.send(JSON.stringify(newMessage));
+            setUserInput("");
         }
     };
 
@@ -154,7 +153,6 @@ const ChatApp = memo(({closeModal}) => {
             exit={{opacity: 0, y: 50}}
             transition={{duration: 0.3}}
         >
-            {/* 헤더 */}
             <div className="flex justify-between items-center border-b pb-4 mb-4">
                 <h3 className="text-xl font-semibold">
                     💬 {chatMode === "bot" ? "챗봇" : "실시간 채팅"}
@@ -167,7 +165,6 @@ const ChatApp = memo(({closeModal}) => {
                 </button>
             </div>
 
-            {/* 챗봇 / 실시간 채팅 전환 */}
             <div className="flex space-x-4 mb-4">
                 <button
                     onClick={() => setChatMode("bot")}
@@ -187,7 +184,6 @@ const ChatApp = memo(({closeModal}) => {
                 </button>
             </div>
 
-            {/* 메시지 영역 */}
             <div
                 className="flex-1 overflow-y-auto space-y-3 p-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
                 {chatMode === "bot" &&
@@ -225,51 +221,38 @@ const ChatApp = memo(({closeModal}) => {
                         >
                             <div
                                 className={`p-3 rounded-lg max-w-xs text-sm shadow-md ${
-                                    msg.sender === clientId ? "bg-blue-500 text-white" : "bg-gray-200 text-black"
+                                    msg.sender === clientId
+                                        ? "bg-blue-500 text-white"
+                                        : "bg-gray-200 text-black"
                                 }`}
-                            >
-                                <div className="font-semibold">
+                            >                                <div className="font-semibold">
                                     {msg.sender}
                                 </div>
+
                                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.text}</ReactMarkdown>
                                 <div className="text-xs opacity-70 mt-1 text-right">{msg.time}</div>
                             </div>
                         </motion.div>
                     ))}
 
-                {chatMode === "bot" && loading && (
-                    <div className="flex justify-start items-center space-x-2">
-                        <motion.div
-                            className="p-3 rounded-lg max-w-xs text-sm shadow-md bg-gray-200 text-black"
-                            animate={{opacity: [0.4, 1, 0.4]}}
-                            transition={{repeat: Infinity, duration: 1}}
-                        >
-                            ✨ 챗봇이 응답 중...
-                        </motion.div>
-                    </div>
-                )}
-
-                <div ref={messagesEndRef}/>
+                <div ref={messagesEndRef}></div>
             </div>
 
-            {/* 입력 영역 */}
-            <div className="mt-3 flex items-center space-x-2">
+            <div className="flex items-center mt-4">
                 <textarea
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="무엇이든 물어보세요..."
-                    className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 scrollbar-thin"
-                    rows={1}
+                    onKeyDown={handleKeyPress}
+                    className="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-600"
+                    rows="2"
+                    placeholder="메시지를 입력하세요"
                 />
                 <button
                     onClick={sendMessage}
-                    disabled={loading && chatMode === "bot"}
-                    className={`px-4 py-2 rounded-md text-white font-semibold ${
-                        loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
-                    } transition-all`}
+                    disabled={loading}
+                    className="ml-4 px-4 py-2 rounded-lg bg-blue-500 text-white"
                 >
-                    {loading ? "..." : "📩"}
+                    {loading ? "로딩 중..." : "전송"}
                 </button>
             </div>
         </motion.div>

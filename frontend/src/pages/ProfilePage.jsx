@@ -7,7 +7,7 @@ import { FiUser, FiUpload, FiLock, FiX } from "react-icons/fi";
 import { useDropzone } from "react-dropzone";
 import debounce from "lodash.debounce"; // lodash.debounce 설치 필요
 
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = "http://192.168.0.6:8000/api";
 
 const InputField = ({ id, label, type, value, onChange, error, icon }) => (
   <div className="mb-6">

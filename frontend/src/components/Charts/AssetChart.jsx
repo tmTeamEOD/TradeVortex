@@ -17,7 +17,7 @@ const AssetChart = ({symbol, isDarkMode}) => {
             setError(null);
 
             try {
-                const API_BASE_URL = "http://localhost:8000"; // 실제 API URL로 수정
+                const API_BASE_URL = "http://192.168.0.6:8000"; // 실제 API URL로 수정
                 const url = `${API_BASE_URL}/api/fetch/candles/days/${symbol}/`;
                 const params = {
                     count: 365, // 1년치 데이터

@@ -174,7 +174,7 @@ const DetailChart = ({ symbol, isDarkMode }) => {
             setError(null);
 
             try {
-                const API_BASE_URL = "http://localhost:8000"; // API 엔드포인트
+                const API_BASE_URL = "http://192.168.0.6:8000"; // API 엔드포인트
                 const url = `${API_BASE_URL}/api/fetch/candles/days/${symbol}/`;
                 const params = {
                     count: 180, // 1년치 데이터

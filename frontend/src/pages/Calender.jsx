@@ -25,7 +25,7 @@ import { Delete } from "@mui/icons-material";
 import dayjs from "dayjs";
 
 const localizer = dayjsLocalizer(dayjs);
-const API_URL = "http://127.0.0.1:8000/api/calender/";
+const API_URL = "http://192.168.0.6:8000/api/calender/";
 
 const EventCalendar = () => {
   const [events, setEvents] = useState([]);
