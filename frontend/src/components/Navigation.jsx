@@ -104,12 +104,13 @@ const Navigation = () => {
 >
   <div className="max-w-[1600px] lg:max-w-[2440px] mx-auto px-4 py-2 flex justify-between items-center h-full">
     {/* 로고 */}
-    <div className="flex items-center space-x-2">
-      <Link to="/" className="flex items-center">
-        <img src={reactLogo} alt="React Logo" className="w-8 h-8" />
-        <span className="text-xl font-light ml-2">TradeVortex</span>
-      </Link>
-    </div>
+<div className="relative flex items-center justify-center space-x-2">
+  <Link to="/" className="flex items-center">
+    <span className="absolute text-2xl  text-black">TradeVortex</span>
+    <img src="icons/TV.svg" alt="React Logo" className="w-8 h-8 ml-[80px]" />
+  </Link>
+</div>
+
 
     {/* 검색창 */}
     <div className="flex-grow max-w-xl mx-auto hidden sm:block"> {/* 화면 크기에 따라 숨김 처리 */}
