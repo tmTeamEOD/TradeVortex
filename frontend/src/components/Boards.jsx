@@ -25,8 +25,8 @@ const Boards = () => {
   }, []);
 
   const boardSections = [
-    { id: 1, title: "최신 뉴스", description: "가장 핫한 금융 소식을 확인하세요." },
-    { id: 2, title: "전체 게시판", description: "모든 게시글을 한눈에 확인하세요." },
+    { id: 1, title: "코인 게시판", description: "가장 핫한 코인 소식을 확인하세요." },
+    { id: 2, title: "주식 게시판", description: "모든 주식을 한눈에 확인하세요." },
     { id: 3, title: "인기 게시글", description: "가장 인기 있는 게시글들을 모았습니다." },
   ];
 

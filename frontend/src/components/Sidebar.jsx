@@ -23,7 +23,7 @@ const Sidebar = () => {
       { label: "트렌드", path: "/charts/trend" },
     ] },
     { icon: "fas fa-newspaper", label: "뉴스", path: "/news", submenu: [
-      { label: "오늘의 뉴스", path: "/news/today" },
+      { label: "최신 뉴스", path: "/news" },
       { label: "전체 뉴스", path: "/newsboard" },
       { label: "주요 이벤트", path: "/news/events" },
     ] },
