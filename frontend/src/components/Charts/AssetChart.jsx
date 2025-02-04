@@ -3,6 +3,8 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import axios from "axios";
 import PropTypes from "prop-types";
+const django = import.meta.env.VITE_DJANGO_URL;
+
 
 const AssetChart = ({symbol, isDarkMode}) => {
     const chartRef = useRef(null);
@@ -17,8 +19,7 @@ const AssetChart = ({symbol, isDarkMode}) => {
             setError(null);
 
             try {
-                const API_BASE_URL = "http://127.0.0.1:8000"; // 실제 API URL로 수정
-                const url = `${API_BASE_URL}/api/fetch/candles/days/${symbol}/`;
+                const url = `${django}/api/fetch/candles/days/${symbol}/`;
                 const params = {
                     count: 365, // 1년치 데이터
                     to: new Date().toISOString(), // 현재 시간을 기준으로 요청

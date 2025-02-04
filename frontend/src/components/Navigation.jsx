@@ -13,9 +13,9 @@ import DigitalClock from "./DigitalClock.jsx";
 import TimezoneSelect from "react-timezone-select";
 import axios from "axios";
 
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = "http://192.168.0.6:8000/api";
 // 백엔드의 도메인 (media 파일은 이 도메인을 사용)
-const BACKEND_DOMAIN = "http:/127.0.0.1:8000";
+const BACKEND_DOMAIN = "http:/192.168.0.6:8000";
 
 // 상대 경로 URL을 절대 경로로 변환하는 헬퍼 함수
 const getAbsoluteUrl = (url) => {
@@ -107,7 +107,7 @@ const Navigation = () => {
 <div className="relative flex items-center justify-center space-x-2">
   <Link to="/" className="flex items-center">
     <span className="absolute text-2xl  text-black">TradeVortex</span>
-    <img src="icons/TV.svg" alt="React Logo" className="w-8 h-8 ml-[80px]" />
+    <img src="icons/TV.svg" alt="React Logo" className="w-8 h-8 ml-[110px] mb-[10px]" />
   </Link>
 </div>
 

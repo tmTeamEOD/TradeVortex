@@ -235,39 +235,24 @@ const ChatApp = memo(({closeModal}) => {
                         </motion.div>
                     ))}
 
-                {chatMode === "bot" && loading && (
-                    <div className="flex justify-start items-center space-x-2">
-                        <motion.div
-                            className="p-3 rounded-lg max-w-xs text-sm shadow-md bg-gray-200 text-black"
-                            animate={{opacity: [0.4, 1, 0.4]}}
-                            transition={{repeat: Infinity, duration: 1}}
-                        >
-                            ✨ 챗봇이 응답 중...
-                        </motion.div>
-                    </div>
-                )}
-
-                <div ref={messagesEndRef}/>
+                <div ref={messagesEndRef}></div>
             </div>
 
-            {/* 입력 영역 */}
-            <div className="mt-3 flex items-center space-x-2">
+            <div className="flex items-center mt-4">
                 <textarea
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="무엇이든 물어보세요..."
-                    className="flex-1 p-3 border rounded-md resize-none shadow-sm focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 scrollbar-thin"
-                    rows={1}
+                    onKeyDown={handleKeyPress}
+                    className="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-600"
+                    rows="2"
+                    placeholder="메시지를 입력하세요"
                 />
                 <button
                     onClick={sendMessage}
-                    disabled={loading && chatMode === "bot"}
-                    className={`px-4 py-2 rounded-md text-white font-semibold ${
-                        loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
-                    } transition-all`}
+                    disabled={loading}
+                    className="ml-4 px-4 py-2 rounded-lg bg-blue-500 text-white"
                 >
-                    {loading ? "..." : "📩"}
+                    {loading ? "로딩 중..." : "전송"}
                 </button>
             </div>
         </motion.div>

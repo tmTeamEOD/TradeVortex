@@ -17,6 +17,7 @@ const BoardPosts = () => {
   const [reportingPost, setReportingPost] = useState(null);
   const [reportReason, setReportReason] = useState("");
 
+
   useEffect(() => {
     fetchPosts();
   }, [boardId]);

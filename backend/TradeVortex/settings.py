@@ -2,8 +2,8 @@ from datetime import timedelta
 from pathlib import Path
 
 # Celery 설정
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'  # Redis 브로커 URL
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'  # Redis를 결과 백엔드로 사용
+CELERY_BROKER_URL = 'redis://192.168.0.6:6379/0'  # Redis 브로커 URL
+CELERY_RESULT_BACKEND = 'redis://192.168.0.6:6379/0'  # Redis를 결과 백엔드로 사용
 
 # Celery 태스크 모듈
 CELERY_ACCEPT_CONTENT = ['json']
@@ -21,7 +21,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost','0.0.0.0','192.168.0.6']
 
 STATIC_ROOT = "/app/staticfiles"  # 컨테이너 내의 경로로 설정
-FRONTEND_URL = "http://127.0.0.1:3000"
+FRONTEND_URL = "http://192.168.0.6:3000"
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
