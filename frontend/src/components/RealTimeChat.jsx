@@ -10,7 +10,7 @@ const RealTimeChat = ({ closeModal }) => {
     // WebSocket 연결을 한 번만 초기화
     if (!socketRef.current) {
       console.log("실시간챗 WebSocket 연결 시도");
-      socketRef.current = new WebSocket("ws://192.168.0.6:8000/ws/realtimechat/");
+      socketRef.current = new WebSocket("ws://127.0.0.1:8000/ws/realtimechat/");
 
       console.log(socketRef);
 

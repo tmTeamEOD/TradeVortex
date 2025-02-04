@@ -61,7 +61,7 @@ const AiAgent = ({ isOpen, closeModal }) => {
 
     const fetchHistory = async () => {
         try {
-            const res = await axios.get("http://192.168.0.6:8000/api/aiassist/history/", {
+            const res = await axios.get("http://127.0.0.1.0.6:8000/api/aiassist/history/", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },

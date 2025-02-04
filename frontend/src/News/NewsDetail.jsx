@@ -13,7 +13,7 @@ const NewsDetail = () => {
 useEffect(() => {
   // 뉴스 상세 정보를 가져오는 API 호출
   axios
-    .get(`http://192.168.0.6:8000/api/news/news/${id}`)
+    .get(`http://127.0.0.1:8000/api/news/news/${id}`)
     .then((response) => {
       console.log('뉴스 상세 정보:', response.data); // 응답을 콘솔에 출력
       setNews(response.data);

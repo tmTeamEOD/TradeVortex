@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://192.168.0.6:8000/board/posts/'; // Django API URL
+const API_URL = 'http://127.0.0.1:8000/board/posts/'; // Django API URL
 
 export const getPosts = async () => {
   const response = await axios.get(API_URL, {

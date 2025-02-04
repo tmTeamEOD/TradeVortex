@@ -11,7 +11,7 @@ const NewsBoard = () => {
     useEffect(() => {
         // 하드코딩된 API 엔드포인트 사용
         axios
-            .get('http://192.168.0.6:8000/api/news/')
+            .get('http://127.0.0.1:8000/api/news/')
             .then((response) => {
                 setNewsList(response.data);
                 setLoading(false);
