@@ -47,28 +47,28 @@ CANDIDATE_SITES = [
     "https://www.cnbc.com/world/",
 
     # 가상화폐 관련 사이트
-    "https://cointelegraph.com/",
-    "https://www.coindesk.com/",
-    "https://cryptobriefing.com/",
-    "https://www.bitcoinist.com/",
-    "https://www.theblock.co/",
-    "https://decrypt.co/",
-    "https://www.cryptonews.com/",
-    "https://www.newsbtc.com/",
-    "https://www.ccn.com/",
-    "https://www.bitcoinmagazine.com/",
-
-    # 한국 포털 뉴스 (경제)
-    "https://finance.naver.com/",
-    "https://news.daum.net/economy",
-    "https://www.hankyung.com/economy",
-    "https://www.mk.co.kr/news/economy/",
-    "https://www.sedaily.com/NewsView/1Z61BBE01M",
-    "https://www.chosun.com/economy/",
-    "https://www.yonhapnews.co.kr/economy/",
-    "https://www.khan.co.kr/economy/",
-    "https://www.ajunews.com/view/20230207094450732",
-    "https://www.mbn.co.kr/news/economy/"
+    # "https://cointelegraph.com/",
+    # "https://www.coindesk.com/",
+    # "https://cryptobriefing.com/",
+    # "https://www.bitcoinist.com/",
+    # "https://www.theblock.co/",
+    # "https://decrypt.co/",
+    # "https://www.cryptonews.com/",
+    # "https://www.newsbtc.com/",
+    # "https://www.ccn.com/",
+    # "https://www.bitcoinmagazine.com/",
+    #
+    # # 한국 포털 뉴스 (경제)
+    # "https://finance.naver.com/",
+    # "https://news.daum.net/economy",
+    # "https://www.hankyung.com/economy",
+    # "https://www.mk.co.kr/news/economy/",
+    # "https://www.sedaily.com/NewsView/1Z61BBE01M",
+    # "https://www.chosun.com/economy/",
+    # "https://www.yonhapnews.co.kr/economy/",
+    # "https://www.khan.co.kr/economy/",
+    # "https://www.ajunews.com/view/20230207094450732",
+    # "https://www.mbn.co.kr/news/economy/"
 ]
 
 # 미디어 폴더 경로 설정 (Django settings.MEDIA_ROOT가 설정되어 있어야 함)

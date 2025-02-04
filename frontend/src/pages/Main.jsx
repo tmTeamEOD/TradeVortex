@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -18,22 +18,35 @@ const Main = () => {
     const isDarkMode = useSelector((state) => state.theme.isDarkMode);
     const navigate = useNavigate();
     const [isAiAgentOpen, setIsAiAgentOpen] = useState(false);
-    const [boardData, setBoardData] = useState([]); // ⬅ 기본값을 빈 배열로 설정
+    const [boardData, setBoardData] = useState([]);
+    const [newsData, setNewsData] = useState([]);  // 뉴스 데이터를 위한 상태 추가
 
     // 주요 코인 심볼 목록
     const coinSymbols = ["KRW-BTC", "KRW-ETH", "KRW-XRP", "KRW-BCH"];
 
     useEffect(() => {
+        // 뉴스 데이터를 API에서 가져오는 함수
+        const fetchNewsData = async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/api/news/");
+                setNewsData(response.data.results); // 뉴스 데이터를 받아와 상태 업데이트
+            } catch (error) {
+                console.error("뉴스 데이터를 가져오는 데 실패했습니다.", error);
+            }
+        };
+
+        // 게시판 데이터를 가져오는 함수
         const fetchBoardType = async () => {
             try {
                 const response = await axios.get("http://127.0.0.1:8000/api/board/posts/?board_type=1&ordering=-created_at&limit=5");
                 setBoardData(response.data);
-                } catch {
-                    console.error("Unexpected API response format:", response.data);
-                }
+            } catch {
+                console.error("Unexpected API response format:", response.data);
+            }
         };
 
-        fetchBoardType();
+        fetchNewsData();  // 뉴스 데이터 호출
+        fetchBoardType(); // 게시판 데이터 호출
     }, []);
 
     return (
@@ -61,29 +74,29 @@ const Main = () => {
                         modules={[Autoplay, Pagination, Navigation]}
                         className="mySwiper h-[25vh]"
                     >
-                        {boardData.length > 0 ? (
-                            boardData.map((post) => (
+                        {newsData.length > 0 ? (
+                            newsData.map((newsItem) => (
                                 <SwiperSlide
-                                    key={post.id}
+                                    key={newsItem.id}
                                     className="relative flex items-center justify-center h-[400px] pl-4"
-                                    onClick={() => navigate(`/post/${post.id}`)}
-                                  >
+                                    onClick={() => navigate(`/news/${newsItem.id}`)}
+                                >
                                     <div className="relative w-full h-full">
                                         <img
-                                            src={post.images?.length > 0 ? post.images[0].image : "/media/profile_pictures/default.jpg"}
-                                            alt={post.title}
+                                            src={newsItem.image || "/media/default_news_image.jpg"}
+                                            alt={newsItem.title}
                                             className="object-cover w-full h-full"
                                         />
                                         <div className="absolute inset-0 bg-[linear-gradient(to_right,_#000000_30%,_transparent)]"></div>
                                     </div>
                                     <div className="absolute bottom-4 left-4 z-20 text-left p-4">
-                                        <h1 className="text-2xl font-semibold mb-2">{post.title}</h1>
-                                        <p className="text-sm font-light">{post.content.substring(0, 100)}...</p>
+                                        <h1 className="text-2xl font-semibold mb-2">{newsItem.title}</h1>
+                                        <p className="text-sm font-light">{newsItem.content.substring(0, 100)}...</p>
                                     </div>
                                 </SwiperSlide>
                             ))
                         ) : (
-                            <div className="text-center py-10">게시물이 없습니다.</div>
+                            <div className="text-center py-10">뉴스가 없습니다.</div>
                         )}
                     </Swiper>
                 </div>
