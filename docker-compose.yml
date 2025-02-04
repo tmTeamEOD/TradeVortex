@@ -29,7 +29,6 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - DJANGO_SETTINGS_MODULE=TradeVortex.settings
-      - DATABASE_URL=postgres://postgres:postgres@psql:5432/tradevortex
       - CELERY_BROKER_URL=redis://redis:6379/0  # Redis 연결
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:
