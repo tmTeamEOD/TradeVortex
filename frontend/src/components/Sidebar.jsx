@@ -24,7 +24,7 @@ const Sidebar = () => {
     ] },
     { icon: "fas fa-newspaper", label: "뉴스", path: "/news", submenu: [
       { label: "오늘의 뉴스", path: "/news/today" },
-      { label: "시장 동향", path: "/news/market" },
+      { label: "전체 뉴스", path: "/newsboard" },
       { label: "주요 이벤트", path: "/news/events" },
     ] },
     { icon: "fas fa-comments", label: "토론", path: "/discussions", submenu: [

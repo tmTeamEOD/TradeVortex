@@ -18,7 +18,9 @@ import EventCalendar from "./pages/Calender.jsx";
 import Notifications from "./components/Notifications.jsx";
 import store from "./redux/store";  // Redux 스토어
 import NotificationHandler from "./components/NotificationHandler";
-import {Provider} from "react-redux";  // WebSocket 알림 핸들러
+import {Provider} from "react-redux";
+import NewsBoard from "./News/NewsBoard.jsx";
+import NewsDetail from "./News/NewsDetail.jsx";  // WebSocket 알림 핸들러
 
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Main = lazy(() => import("./pages/Main.jsx"));
@@ -63,7 +65,7 @@ const AppContent = () => {
 
     return (
         <div>
-            {userId && <NotificationHandler userId={userId} />} {/* userId가 존재할 때만 NotificationHandler 렌더링 */}
+            {userId && <NotificationHandler userId={userId}/>} {/* userId가 존재할 때만 NotificationHandler 렌더링 */}
             <AnimatePresence mode="sync">
                 {/* Navigation is fixed at the top */}
                 {!isHomePage && <Navigation className="fixed w-full" key="navigation"/>}
@@ -83,6 +85,8 @@ const AppContent = () => {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/boards" element={<BoardList/>}/>
                         <Route path="/news" element={<News/>}/>
+                        <Route path="/newsboard" element={<NewsBoard/>}/>
+                        <Route path="/news/:id" element={<NewsDetail/>}/>
                         <Route path="/discussion" element={<Toron/>}/>
                         <Route path="/portfolio" element={<Portfolio/>}/>
                         <Route path="/schedule" element={<EventCalendar/>}/>

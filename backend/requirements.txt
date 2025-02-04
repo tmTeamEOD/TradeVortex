@@ -2,7 +2,6 @@ celery
 redis
 channels==4.2.0
 channels_redis
-crewai==0.95.0
 crewai[tools]
 distro==1.9.0
 dj-rest-auth==7.0.1
@@ -34,3 +33,7 @@ psycopg2-binary
 watchgod
 selenium
 google.generativeai
+scikit-learn
+transformers
+torch
+konlpy

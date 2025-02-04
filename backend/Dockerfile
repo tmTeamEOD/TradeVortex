@@ -8,6 +8,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && curl https://sh.rustup.rs -sSf | sh -s -- -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 ENV PATH="/root/.cargo/bin:${PATH}"
+# JDK 설치
+RUN apt-get update && \
+    apt-get install -y default-jdk && \
+    rm -rf /var/lib/apt/lists/*
+
+# JAVA_HOME 설정 (설치된 JDK 경로에 맞게 수정)
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV PATH="$JAVA_HOME/bin:$PATH"
 # 작업 디렉토리 설정
 WORKDIR /app
 
