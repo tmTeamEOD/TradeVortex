@@ -84,7 +84,7 @@ const AiAgent = ({ isOpen, closeModal }) => {
 useEffect(() => {
     if (user && user.id) {
         socketRef.current = new WebSocket(
-            `ws://localhost:8000/ws/notify_${user.id}/`
+            `ws://192.168.0.6:8000/ws/notify_${user.id}/`
         );
 
         socketRef.current.onmessage = (event) => {

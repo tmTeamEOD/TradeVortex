@@ -14,26 +14,17 @@ const Sidebar = () => {
   const menuItems = [
     { icon: "fas fa-home", label: "홈", path: "/", submenu: [
       { label: "메인", path: "/main" },
-      { label: "대시 보드", path: "/dashboard" },
-      { label: "설정", path: "/settings" },
+      { label: "첫화면", path: "/" },
     ] },
     { icon: "fas fa-chart-line", label: "차트", path: "/charts", submenu: [
       { label: "실시간 차트", path: "/charts" },
-      { label: "히스토리", path: "/charts/history" },
-      { label: "트렌드", path: "/charts/trend" },
     ] },
     { icon: "fas fa-newspaper", label: "뉴스", path: "/news", submenu: [
       { label: "최신 뉴스", path: "/news" },
       { label: "전체 뉴스", path: "/newsboard" },
-      { label: "주요 이벤트", path: "/news/events" },
     ] },
     { icon: "fas fa-comments", label: "토론", path: "/discussions", submenu: [
       { label: "진행중인 토론", path: "/discussion" },
-    ] },
-    { icon: "fas fa-cogs", label: "설정", path: "/settings", submenu: [
-      { label: "계정 관리", path: "/settings/account" },
-      { label: "알림 설정", path: "/settings/notifications" },
-      { label: "테마 변경", path: "/settings/theme" },
     ] },
   ];
 

@@ -37,3 +37,5 @@ scikit-learn
 transformers
 torch
 konlpy
+finance-datareader
+plotly

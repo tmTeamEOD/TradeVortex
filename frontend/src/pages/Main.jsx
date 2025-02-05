@@ -111,7 +111,7 @@ const Main = () => {
                                 {title: "추천 토론", content: "함께 성장할 커뮤니티 멤버 찾기", navigation: "/discussion"},
                                 {title: "금융 일정", content: "중요한 금융 이벤트와 일정", navigation: "/schedule"},
                                 {title: "실시간 차트", content: "시장 데이터를 한눈에", navigation: "/charts"},
-                                {title: "포트폴리오", content: "자산분석 서비스", navigation: "/portfolio"},
+                                {title: "AI 예상 주가", content: "국내 외 주식 예측 서비스", navigation: "/finance"},
                                 {
                                     title: "AI 전문 분석 서비스",
                                     content: "AI 전문 분석가의 보고서를 받아보세요",

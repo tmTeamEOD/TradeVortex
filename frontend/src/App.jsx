@@ -20,7 +20,8 @@ import store from "./redux/store";  // Redux 스토어
 import NotificationHandler from "./components/NotificationHandler";
 import {Provider} from "react-redux";
 import NewsBoard from "./News/NewsBoard.jsx";
-import NewsDetail from "./News/NewsDetail.jsx";  // WebSocket 알림 핸들러
+import NewsDetail from "./News/NewsDetail.jsx";
+import Financedata from "./pages/financedata.jsx";  // WebSocket 알림 핸들러
 
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Main = lazy(() => import("./pages/Main.jsx"));
@@ -93,6 +94,7 @@ const AppContent = () => {
                         <Route path="/boards/:boardId" element={<BoardPosts/>}/>
                         <Route path="/charts" element={<Charts/>}/>
                         <Route path="/charts/:symbol" element={<DetailChart/>}/>
+                        <Route path="/finance" element={<Financedata/>}/>
                         <Route path="/activate" element={<EmailActivate/>}/>
                         <Route path="/posts/:postId" element={<PostDetail/>}/>
                         <Route path="/signup" element={<Signup/>}/>

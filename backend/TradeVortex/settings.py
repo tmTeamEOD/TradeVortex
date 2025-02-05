@@ -11,7 +11,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul'  # 시간대 설정
 
-SECRET_KEY = 'your_random_secret_key_here'
+SECRET_KEY = 'imsuperior'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +43,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # Application definition
 INSTALLED_APPS = [
+    'financedata',
     'newspage',
     'toron',
     'calender',
@@ -184,8 +185,8 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Access Token 유효기간
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Refresh Token 유효기간
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=5),  # Access Token 유효기간
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),  # Refresh Token 유효기간
     'ROTATE_REFRESH_TOKENS': True,  # Refresh Token 갱신 시 새 Refresh Token 발급
     'BLACKLIST_AFTER_ROTATION': True,  # 이전 Refresh Token을 블랙리스트에 추가
     'ALGORITHM': 'HS256',  # 알고리즘

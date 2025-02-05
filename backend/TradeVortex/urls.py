@@ -18,6 +18,7 @@ urlpatterns = [
     path('api/calender/', include('calender.urls')),
     path('api/news/', include('newspage.urls')),
     path('api/toron/', include('toron.urls')),
+    path('api/finance/', include('financedata.urls')),
 
 ]
 
