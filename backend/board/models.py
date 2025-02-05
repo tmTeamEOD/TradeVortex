@@ -156,3 +156,4 @@ class Report(models.Model):
     class Meta:
         verbose_name = "신고"
         verbose_name_plural = "신고들"
+#하하하하
